@@ -3,7 +3,7 @@ import { getPermalink, getBlogPermalink, getAsset } from './utils/permalinks';
 export const headerData = {
   links: [
     {
-      text: 'Homes',
+      text: 'Homes主页',
       links: [
         {
           text: 'SaaS',
@@ -24,40 +24,40 @@ export const headerData = {
       ],
     },
     {
-      text: 'Pages',
+      text: 'Pages页面',
       links: [
         {
           text: 'Features (Anchor Link)',
           href: getPermalink('/#features'),
         },
         {
-          text: 'Services',
+          text: 'Services服务',
           href: getPermalink('/services'),
         },
         {
-          text: 'Pricing',
+          text: 'Pricing定价',
           href: getPermalink('/pricing'),
         },
         {
-          text: 'About us',
+          text: 'About us关于我们',
           href: getPermalink('/about'),
         },
         {
-          text: 'Contact',
+          text: 'Contact联系我们',
           href: getPermalink('/contact'),
         },
         {
-          text: 'Terms',
+          text: 'Terms条款',
           href: getPermalink('/terms'),
         },
         {
-          text: 'Privacy policy',
+          text: 'Privacy policy隐私政策',
           href: getPermalink('/privacy'),
         },
       ],
     },
     {
-      text: 'Landing',
+      text: 'Landing落地页',
       links: [
         {
           text: 'Lead Generation',
@@ -86,7 +86,7 @@ export const headerData = {
       ],
     },
     {
-      text: 'Blog',
+      text: 'Blog博客',
       links: [
         {
           text: 'Blog List',
@@ -111,7 +111,7 @@ export const headerData = {
       ],
     },
     {
-      text: 'Widgets',
+      text: 'Widgets组件',
       href: '#',
     },
   ],
@@ -121,7 +121,7 @@ export const headerData = {
 export const footerData = {
   links: [
     {
-      title: 'Product',
+      title: 'Product 产品',
       links: [
         { text: 'Features', href: '#' },
         { text: 'Security', href: '#' },
