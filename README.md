@@ -3,9 +3,9 @@
 <img src="https://raw.githubusercontent.com/arthelokyo/.github/main/resources/astrowind/lighthouse-score.png" align="right"
      alt="AstroWind Lighthouse Score" width="100" height="358">
 
-🌟 _Most *starred* & *forked* Astro theme in 2022, 2023 & 2024_. 🌟
+🌟 _Most *starred* & *forked* Astro theme in 2022, 2023, 2024 & 2025_. 🌟
 
-**AstroWind** is a free and open-source template to make your website using **[Astro 6](https://astro.build/) + [Tailwind CSS v4](https://tailwindcss.com/)**. Ready to start a new project and designed taking into account web best practices.
+**AstroWind** is a free and open-source template to make your website using **[Astro v6](https://astro.build/) + [Tailwind CSS v4](https://tailwindcss.com/)**. Ready to start a new project and designed taking into account web best practices.
 
 - ✅ **Production-ready** scores in **PageSpeed Insights** reports.
 - ✅ Integration with **Tailwind CSS v4** supporting **Dark mode** and **_RTL_**.
@@ -60,7 +60,7 @@
 
 **AstroWind 2.0** brings a major modernization of the template stack:
 
-- **Astro 6** with the latest Content Collections API and performance improvements
+- **Astro v6** with the latest Content Collections API and performance improvements
 - **Tailwind CSS v4** with CSS-first configuration (no more `tailwind.config.js`)
 - **Node.js >= 22.12.0** required
 - Optimized PageSpeed scores with `fetchpriority`, font preloading, and preconnect hints
@@ -78,7 +78,7 @@ npm create astro@latest -- --template arthelokyo/astrowind
 
 ## Getting started
 
-**AstroWind** tries to give you quick access to creating a website using [Astro 6](https://astro.build/) + [Tailwind CSS v4](https://tailwindcss.com/). It's a free theme which focuses on simplicity, good practices and high performance.
+**AstroWind** tries to give you quick access to creating a website using [Astro v6](https://astro.build/) + [Tailwind CSS v4](https://tailwindcss.com/). It's a free theme which focuses on simplicity, good practices and high performance.
 
 Very little vanilla javascript is used only to provide basic functionality so that each developer decides which framework (React, Vue, Svelte, Solid JS...) to use and how to approach their goals.
 
