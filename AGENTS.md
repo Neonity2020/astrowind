@@ -8,13 +8,13 @@ AstroWind is a free, open-source website template built with **Astro 6** and **T
 
 ## Quick Reference
 
-| Command | Purpose |
-|---------|---------|
-| `npm run dev` | Start dev server at localhost:4321 |
-| `npm run build` | Production build to `./dist/` |
-| `npm run preview` | Preview production build locally |
-| `npm run check` | Run astro check + ESLint + Prettier |
-| `npm run fix` | Auto-fix ESLint + Prettier issues |
+| Command           | Purpose                             |
+| ----------------- | ----------------------------------- |
+| `npm run dev`     | Start dev server at localhost:4321  |
+| `npm run build`   | Production build to `./dist/`       |
+| `npm run preview` | Preview production build locally    |
+| `npm run check`   | Run astro check + ESLint + Prettier |
+| `npm run fix`     | Auto-fix ESLint + Prettier issues   |
 
 **Node.js requirement:** >= 22.12.0
 
@@ -45,6 +45,7 @@ vendor/integration/    # Custom Astro integration for config loading
 ### Path Aliases
 
 Use `~/` to import from `src/`:
+
 ```typescript
 import Image from '~/components/common/Image.astro';
 import { SITE } from 'astrowind:config';
@@ -89,6 +90,7 @@ Post frontmatter: `title` (required), `publishDate`, `updateDate`, `draft`, `exc
 ## Image Handling
 
 `src/components/common/Image.astro` supports:
+
 - Local images via `astro:assets` (optimized by Sharp)
 - Remote images via Unpic CDN
 - Allowed domains: `cdn.pixabay.com`, `images.unsplash.com`, `plus.unsplash.com`
@@ -98,6 +100,7 @@ Hero images use `loading="eager"` and `fetchpriority="high"`.
 ## Verification Checklist
 
 After changes, always verify:
+
 1. `npm run build` succeeds
 2. `npm run check` passes (astro check + ESLint + Prettier)
 3. Visual check in browser: homepage, blog, dark mode, mobile menu

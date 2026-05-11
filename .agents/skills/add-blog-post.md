@@ -24,18 +24,18 @@ author: 'Author Name'
 
 ## Frontmatter Fields
 
-| Field | Required | Description |
-|-------|----------|-------------|
-| `title` | Yes | Post title |
-| `publishDate` | No | ISO 8601 date |
-| `updateDate` | No | ISO 8601 date |
-| `draft` | No | Set `true` to hide from listing |
-| `excerpt` | No | Summary for listing pages |
-| `image` | No | Path to hero image (use `~/` prefix for local) |
-| `category` | No | Single category string |
-| `tags` | No | Array of tag strings |
-| `author` | No | Author name |
-| `metadata` | No | Override SEO metadata |
+| Field         | Required | Description                                    |
+| ------------- | -------- | ---------------------------------------------- |
+| `title`       | Yes      | Post title                                     |
+| `publishDate` | No       | ISO 8601 date                                  |
+| `updateDate`  | No       | ISO 8601 date                                  |
+| `draft`       | No       | Set `true` to hide from listing                |
+| `excerpt`     | No       | Summary for listing pages                      |
+| `image`       | No       | Path to hero image (use `~/` prefix for local) |
+| `category`    | No       | Single category string                         |
+| `tags`        | No       | Array of tag strings                           |
+| `author`      | No       | Author name                                    |
+| `metadata`    | No       | Override SEO metadata                          |
 
 ## URL Pattern
 
