@@ -41,7 +41,6 @@
   - [Configuration](#configuration)
   - [Deploy](#deploy)
 - [Frequently Asked Questions](#frequently-asked-questions)
-- [Related Projects](#related-projects)
 - [Contributing](#contributing)
 - [Acknowledgements](#acknowledgements)
 - [License](#license)
@@ -56,15 +55,9 @@
 
 <br>
 
-## 🔔 AstroWind 2.0
+## 🔔 Upcoming: AstroWind 2.0 – We Need Your Vision!
 
-**AstroWind 2.0** brings a major modernization of the template stack:
-
-- **Astro v6** with the latest Content Collections API and performance improvements
-- **Tailwind CSS v4** with CSS-first configuration (no more `tailwind.config.js`)
-- **Node.js >= 22.12.0** required
-- Optimized PageSpeed scores with `fetchpriority`, font preloading, and preconnect hints
-- Updated all dependencies to latest stable versions
+We're gearing up for **AstroWind 2.0**, and we want it to be shaped by you, our community. Join the discussion and share your ideas, suggestions, and feedback to help us make AstroWind even better.
 
 [Share Your Feedback in Our Discussion!](https://github.com/arthelokyo/astrowind/discussions/392)
 
@@ -288,11 +281,6 @@ Clone this repository on your own GitHub account and deploy to Vercel:
 -
 
 <br>
-
-## Related projects
-
-- [TailNext](https://tailnext.vercel.app/) - Free template using Next.js 14 and Tailwind CSS with the new App Router.
-- [Qwind](https://qwind.pages.dev/) - Free template to make your website using Qwik + Tailwind CSS.
 
 ## Contributing
 
