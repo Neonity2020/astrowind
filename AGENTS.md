@@ -93,7 +93,7 @@ Post frontmatter: `title` (required), `publishDate`, `updateDate`, `draft`, `exc
 
 - Local images via `astro:assets` (optimized by Sharp)
 - Remote images via Unpic CDN
-- Allowed domains: `cdn.pixabay.com`, `images.unsplash.com`, `plus.unsplash.com`
+- Allowed domains (for providers Unpic can't detect, processed by Sharp): `cdn.pixabay.com`
 
 Hero images use `loading="eager"` and `fetchpriority="high"`.
 
