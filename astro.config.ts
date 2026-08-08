@@ -86,6 +86,11 @@ export default defineConfig({
     // native <Image /> (i.e. providers Unpic can't detect, like Pixabay).
     // Listed entries are authorized to be processed by Sharp.
     domains: ['cdn.pixabay.com'],
+
+    // Emit responsive styles for the native <Image layout=…> used by
+    // src/components/common/Image.astro (local images). Utility classes on
+    // each usage still win, since these styles use low-specificity selectors.
+    responsiveStyles: true,
   },
 
   markdown: {
