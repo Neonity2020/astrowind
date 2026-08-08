@@ -13,7 +13,7 @@
 - ✅ **Image Optimization** (using new **Astro Assets** and **Unpic** for Universal image CDN).
 - ✅ Generation of **project sitemap** based on your routes.
 - ✅ **Open Graph tags** for social media sharing.
-- ✅ **Analytics** built-in Google Analytics, and Splitbee integration.
+- ✅ **Analytics** built-in Google Analytics integration.
 
 <br>
 
@@ -124,7 +124,7 @@ Inside **AstroWind** template, you'll see the following folders and files:
 │   │   └── ...
 │   ├── utils/
 │   ├── config.yaml
-│   └── navigation.js
+│   └── navigation.ts
 ├── package.json
 ├── astro.config.ts
 └── ...
@@ -277,14 +277,6 @@ Clone this repository on your own GitHub account and deploy to Vercel:
 Clone this repository on your own GitHub account and deploy to PandaStack:
 
 [![Deploy to PandaStack](https://dashboard.pandastack.io/deploy-button.svg)](https://dashboard.pandastack.io/deploy?repo=arthelokyo/astrowind&type=static&buildCmd=npm+run+build&outputDir=dist)
-
-<br>
-
-## Frequently Asked Questions
-
-- Why?
--
--
 
 <br>
 
