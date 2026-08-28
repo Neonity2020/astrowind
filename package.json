@@ -1,5 +1,5 @@
 {
-  "name": "@onwidget/astrowind",
+  "name": "@arthelokyo/astrowind",
   "version": "1.0.0-beta.65",
   "description": "AstroWind: A free template using Astro 7 and Tailwind CSS v4. Astro starter theme.",
   "type": "module",
@@ -70,6 +70,9 @@
     "astro-compress": {
       "sharp": "^0.35.3",
       "svgo": "^4.0.2"
+    },
+    "postcss": {
+      "nanoid": "^3.3.18"
     }
   }
 }
