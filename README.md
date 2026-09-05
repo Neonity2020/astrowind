@@ -33,14 +33,12 @@
 <summary>Table of Contents</summary>
 
 - [Demo](#demo)
-- [Upcoming: AstroWind 2.0 – We Need Your Vision!](#-upcoming-astrowind-20--we-need-your-vision)
 - [TL;DR](#tldr)
 - [Getting started](#getting-started)
   - [Project structure](#project-structure)
   - [Commands](#commands)
   - [Configuration](#configuration)
   - [Deploy](#deploy)
-- [Frequently Asked Questions](#frequently-asked-questions)
 - [Contributing](#contributing)
 - [Acknowledgements](#acknowledgements)
 - [License](#license)
@@ -52,14 +50,6 @@
 ## Demo
 
 📌 [https://astrowind.vercel.app/](https://astrowind.vercel.app/)
-
-<br>
-
-## 🔔 Upcoming: AstroWind 2.0 – We Need Your Vision!
-
-We're gearing up for **AstroWind 2.0**, and we want it to be shaped by you, our community. Join the discussion and share your ideas, suggestions, and feedback to help us make AstroWind even better.
-
-[Share Your Feedback in Our Discussion!](https://github.com/arthelokyo/astrowind/discussions/392)
 
 <br>
 
