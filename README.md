@@ -39,6 +39,7 @@
   - [Commands](#commands)
   - [Configuration](#configuration)
   - [Deploy](#deploy)
+- [FAQ](#faq)
 - [Contributing](#contributing)
 - [Acknowledgements](#acknowledgements)
 - [License](#license)
@@ -65,7 +66,7 @@ npm create astro@latest -- --template arthelokyo/astrowind
 
 Very little vanilla javascript is used only to provide basic functionality so that each developer decides which framework (React, Vue, Svelte, Solid JS...) to use and how to approach their goals.
 
-> **Note:** Requires **Node.js >= 22.12.0**. The template currently uses `output: 'static'`, but the blog only works with `prerender = true`.
+> **Note:** Requires **Node.js >= 22.22.3** (see `.nvmrc`). The template currently uses `output: 'static'`, but the blog only works with `prerender = true`.
 
 ### Project structure
 
@@ -267,6 +268,25 @@ Clone this repository on your own GitHub account and deploy to Vercel:
 Clone this repository on your own GitHub account and deploy to PandaStack:
 
 [![Deploy to PandaStack](https://dashboard.pandastack.io/deploy-button.svg)](https://dashboard.pandastack.io/deploy?repo=arthelokyo/astrowind&type=static&buildCmd=npm+run+build&outputDir=dist)
+
+<br>
+
+## FAQ
+
+**Is AstroWind v1 still maintained?**
+Yes, in maintenance mode: v1 receives dependency updates and bug fixes, while new development goes to AstroWind v2 (October 2026).
+
+**How do I disable the blog, change the Open Graph image, deploy under a sub-path, connect a CMS, deploy to Cloudflare…?**
+Ask your AI coding assistant. AstroWind is _AI-ready_: the repository ships an [`AGENTS.md`](./AGENTS.md) with the project conventions and step-by-step skills in [`.agents/skills/`](./.agents/skills/) for the most common tasks, so Claude Code, Codex/ChatGPT, Cursor, Copilot and similar tools can do them reliably (and you can read the skills yourself).
+
+**Where do blog posts go?**
+`src/data/post/` as `.md` or `.mdx` files. They are read at build time.
+
+**Where do I change colors and fonts?**
+Colors in `src/components/CustomStyles.astro` (CSS variables for light and dark), Tailwind tokens and utilities in `src/assets/styles/tailwind.css`, fonts in the `fonts` entry of `astro.config.ts`.
+
+**Which Node.js version do I need?**
+Node.js 22.22.3 or newer (`.nvmrc`).
 
 <br>
 
