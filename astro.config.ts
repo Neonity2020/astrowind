@@ -75,6 +75,8 @@ export default defineConfig({
     }),
     mdx(),
     icon({
+      // Local SVG icons (used as <Icon name="file-name" />) live next to the other assets.
+      iconDir: 'src/assets/icons',
       include: {
         tabler: ['*'],
         'flat-color-icons': [
