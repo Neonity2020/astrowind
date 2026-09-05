@@ -12,6 +12,7 @@
   --color-accent: var(--aw-color-accent);
   --color-default: var(--aw-color-text-default);
   --color-muted: var(--aw-color-text-muted);
+  --color-link: var(--aw-color-link, var(--aw-color-primary));
 
   --font-sans:
     var(--aw-font-sans, ui-sans-serif), ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
@@ -110,6 +111,13 @@
 }
 [data-aw-toggle-menu].expanded g > path:last-child {
   @apply rotate-45 translate-y-[-8px] translate-x-[14px];
+}
+
+/* Current page in the header navigation (set server-side in Header.astro and
+   kept in sync on client-side navigations). Override --aw-color-link in
+   CustomStyles.astro to change the colour. */
+#header nav .aw-link-active {
+  @apply text-link;
 }
 
 .dd *:first-child {
