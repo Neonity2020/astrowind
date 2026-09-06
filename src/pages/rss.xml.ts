@@ -4,6 +4,10 @@ import { SITE, METADATA, APP_BLOG } from 'astrowind:config';
 import { fetchPosts } from '~/utils/blog';
 import { getPermalink } from '~/utils/permalinks';
 
+// The feed is generated from the build-time content collection, so keep it
+// prerendered even if the project opts into on-demand rendering.
+export const prerender = true;
+
 export const GET = async () => {
   if (!APP_BLOG.isEnabled) {
     return new Response(null, {
