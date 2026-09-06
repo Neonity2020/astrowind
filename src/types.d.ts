@@ -80,6 +80,8 @@ export interface MetaDataTwitter {
 export interface Image {
   src: string;
   alt?: string;
+  /** Optional link (used by Brands logos). */
+  href?: string;
 }
 
 export interface Widget {
@@ -129,6 +131,10 @@ export interface Testimonial {
   name?: string;
   job?: string;
   image?: string | unknown;
+  /** 1–5 stars. */
+  rating?: number;
+  /** Company logo: an icon name (`tabler:…`) or an image. */
+  logo?: string | Image;
 }
 
 export interface Input {
@@ -185,11 +191,20 @@ export interface Pricing extends Omit<Headline, 'classes'>, Widget {
 export interface Testimonials extends Omit<Headline, 'classes'>, Widget {
   testimonials?: Array<Testimonial>;
   callToAction?: CallToAction;
+  /** `grid` (equal rows) or `masonry` (packed "wall"). */
+  layout?: 'grid' | 'masonry';
+  columns?: number;
 }
 
 export interface Brands extends Omit<Headline, 'classes'>, Widget {
   icons?: Array<string>;
   images?: Array<Image>;
+  /** Static row (`grid`) or an infinite scrolling row (`marquee`, pauses on hover and with reduced motion). */
+  variant?: 'grid' | 'marquee';
+  /** Monochrome logos that reveal their colours on hover. */
+  grayscale?: boolean;
+  /** Light card behind each logo. */
+  boxed?: boolean;
 }
 
 export interface Features extends Omit<Headline, 'classes'>, Widget {
