@@ -10,6 +10,7 @@ import ToBlogLink from '~/components/blog/ToBlogLink.astro';
 import { getCanonical, getPermalink } from '~/utils/permalinks';
 import { getStaticPathsBlogPost, blogPostRobots } from '~/utils/blog';
 import { findImage } from '~/utils/images';
+import { truncateAtWord } from '~/utils/utils';
 import type { MetaData } from '~/types';
 import RelatedPosts from '~/components/blog/RelatedPosts.astro';
 
@@ -29,7 +30,8 @@ const image = (await findImage(post.image)) as ImageMetadata | string | undefine
 const metadata = merge(
   {
     title: post.title,
-    description: post.excerpt,
+    // Search engines cut descriptions at about 155 characters; the full excerpt stays visible on the page.
+    description: truncateAtWord(post.excerpt, 155),
     robots: {
       index: blogPostRobots?.index,
       follow: blogPostRobots?.follow,

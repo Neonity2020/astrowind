@@ -17,6 +17,8 @@ export interface Post {
   /** Optional summary of post content. */
   excerpt?: string;
   image?: ImageMetadata | string;
+  /** Alternative text for the cover image. */
+  imageAlt?: string;
 
   category?: Taxonomy;
   tags?: Taxonomy[];

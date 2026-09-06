@@ -1,51 +1,149 @@
 ---
 publishDate: 2023-08-12T00:00:00Z
+updateDate: 2026-09-06T00:00:00Z
 author: John Smith
 title: Get started with AstroWind to create a website using Astro and Tailwind CSS
-excerpt: Start your web journey with AstroWind – harness Astro and Tailwind CSS for a stunning site. Explore our guide now.
+excerpt: From an empty folder to a deployed site in an afternoon. Create the project, learn where things live, edit the home page, publish a post and build for production.
 image: https://images.unsplash.com/photo-1516996087931-5ae405802f9f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80
 category: Tutorials
 tags:
   - astro
   - tailwind css
-metadata:
-  canonical: https://astrowind.vercel.app/get-started-website-with-astro-tailwind-css
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+AstroWind is a free template for [Astro](https://astro.build/) and [Tailwind CSS](https://tailwindcss.com/). It gives you a complete marketing site with a blog, dark mode, image optimisation and SEO metadata, built as a set of typed components you compose in pages. This guide takes you from nothing to a deployed site.
 
-## Nostra torquent consequat volutpat aliquet neque
+## What you need
 
-Lorem ipsum dolor sit amet consectetur adipiscing elit proin, aenean litora volutpat urna egestas magnis arcu non, cras ut cursus et sed morbi lectus. Integer faucibus sagittis eu nunc urna aliquet a laoreet torquent, suspendisse penatibus nulla sollicitudin congue rutrum dictum. Ornare mi habitasse fermentum phasellus dui et morbi litora sodales dictum id erat, nibh purus class ligula aenean lectus venenatis euismod cras torquent ac. Senectus sagittis conubia hendrerit at egestas porta venenatis nisi metus gravida tempor, aenean facilisis nisl ante facilisi lacus integer hac iaculis purus. Scelerisque libero torquent egestas curae tellus viverra inceptos imperdiet urna, porta suspendisse interdum primis odio morbi tempor commodo dictumst, suscipit ornare habitasse semper feugiat cras quisque lobortis.
+- **Node.js 22.22.3 or newer.** The version is pinned in `.nvmrc`; if you use nvm, `nvm use` picks it up.
+- A terminal and an editor. Visual Studio Code with the Astro extension gives you syntax highlighting and completion inside `.astro` files.
+- A GitHub account if you want the one-click deploys at the end.
 
-Iaculis arcu commodo dis proin vitae himenaeos, ante tristique potenti magna ligula, sagittis libero fermentum ullamcorper sociis. Sem eros non arcu natoque fringilla lacus vestibulum lacinia integer mus viverra in proin, sagittis fusce tortor erat enim rutrum vulputate curae laoreet class diam. Inceptos convallis ac nisi natoque nam quisque magnis ut nullam fringilla curae, luctus lacus purus habitant erat magna molestie class habitasse metus, nibh lobortis tortor curabitur neque phasellus feugiat netus morbi parturient. Neque malesuada mauris justo himenaeos pharetra, ullamcorper enim ligula a nulla consequat, eget vivamus velit ridiculus.
+## Create the project
 
-## Praesent tellus ad sapien erat or
+The Astro CLI can scaffold a project from any GitHub repository:
 
-- Quam orci nostra mi nulla, hac a.
+```shell
+npm create astro@latest -- --template arthelokyo/astrowind
+```
 
-- Interdum iaculis quis tellus sociis orci nulla, quam rutrum conubia tortor primis.
+Answer the prompts (project folder, install dependencies, initialise git), then:
 
-- Non felis sem placerat aenean duis, ornare turpis nostra.
+```shell
+cd my-site
+npm run dev
+```
 
-- Habitasse duis sociis sagittis cursus, ante dictumst commodo.
+Open `http://localhost:4321`. You are looking at the demo site: a home page, four alternative home pages, six landing pages, a blog with six posts, and the usual about, services, pricing, contact and legal pages. Everything you see is a file you can edit; the dev server reloads on save.
 
-Duis maecenas massa habitasse inceptos imperdiet scelerisque at condimentum ultrices, nam dui leo enim taciti varius cras habitant pretium rhoncus, ut hac euismod nostra metus sagittis mi aenean. Quam eleifend aliquet litora eget a tempor, ultricies integer vestibulum non felis sodales, eros diam massa libero iaculis.
+## Where things live
 
-Nisl ligula ante magnis himenaeos pellentesque orci cras integer urna ut convallis, id phasellus libero est nunc ultrices eget blandit massa ac hac, morbi vulputate quisque tellus feugiat conubia luctus tincidunt curae fermentum. Venenatis dictumst tincidunt senectus vivamus duis dis sociis taciti porta primis, rhoncus ridiculus rutrum curae mattis ullamcorper ac sagittis nascetur curabitur erat, faucibus placerat vulputate eu at habitasse nulla nisl interdum. Varius turpis dignissim montes ac ante tristique quis parturient hendrerit faucibus, consequat auctor penatibus suspendisse rutrum erat nulla inceptos est justo, etiam mollis mauris facilisi cras sociosqu eu sapien sed.
+You will spend nearly all your time in `src/`:
 
-Blandit aptent conubia mollis mauris habitasse suspendisse torquent aenean, ac primis auctor congue cursus mi posuere molestie, velit elementum per feugiat libero dictumst phasellus. Convallis mollis taciti condimentum praesent id porttitor ac dictumst at, sed in eu eleifend vehicula fermentum lectus litora venenatis, gravida hac molestie cum sociosqu mus viverra torquent. Congue est fusce habitasse ridiculus integer suscipit platea volutpat, inceptos varius elementum pellentesque malesuada interdum magnis. Hac lacus eget enim purus massa commodo nec lectus natoque fames arcu, mattis class quam ut neque dui cras quis diam orci sed velit, erat morbi eros suscipit sagittis laoreet vivamus torquent nulla turpis.
+| Path                                | What is there                                                          |
+| ----------------------------------- | ---------------------------------------------------------------------- |
+| `src/pages/`                        | One file per route. `index.astro` is the home page.                    |
+| `src/components/widgets/`           | The page sections: heroes, features, pricing, FAQ, testimonials…       |
+| `src/data/post/`                    | Blog posts as Markdown or MDX files.                                   |
+| `src/config.yaml`                   | Site name, URL, default SEO metadata, blog settings, analytics, theme. |
+| `src/navigation.ts`                 | The header menu, the header button and the footer columns.             |
+| `src/components/CustomStyles.astro` | Colours and fonts as CSS variables, for light and dark mode.           |
+| `src/assets/images/`                | Images that Astro optimises at build time.                             |
+| `public/`                           | Files copied as they are (robots rules, verification files…).          |
 
-Ridiculus velit suscipit consequat auctor interdum magna gravida dictumst libero ut habitasse, sollicitudin vehicula suspendisse leo erat tristique at platea sagittis proin dignissim, id ornare scelerisque et urna maecenas congue tincidunt dictum malesuada. Dui vulputate accumsan scelerisque ridiculus dictum quisque et nam hac, tempus ultricies curabitur proin netus diam vivamus. Vestibulum ante ac auctor mi urna risus lacinia vulputate justo orci sociis dui semper, commodo morbi enim vivamus neque sem pellentesque velit donec hac metus odio. Tempor ultrices himenaeos massa sollicitudin mus conubia scelerisque cubilia, nascetur potenti mauris convallis et lectus gravida egestas sociis, erat eros ultricies aptent congue tortor ornare.
+The template's own machinery lives in `vendor/integration/`. You do not need to touch it.
 
-Pretium aliquet sodales aliquam tincidunt litora lectus, erat dui nibh diam mus, sed hendrerit condimentum senectus arcu. Arcu a nibh auctor dapibus eros turpis tempus commodo, libero hendrerit dictum interdum mus class sed scelerisque, sapien dictumst enim magna molestie habitant donec. Fringilla dui sed curabitur commodo varius est vel, viverra primis habitant sapien montes mattis dignissim, gravida cubilia laoreet tempus aliquet senectus. Sociosqu purus praesent porttitor curae sollicitudin accumsan feugiat maecenas donec quis lacus, suscipit taciti convallis odio morbi eros nibh bibendum nunc orci. Magna cras nullam aliquam metus nibh sagittis facilisi tortor nec, mus varius curae ridiculus fames congue interdum erat urna, neque odio lobortis mi mattis diam cubilia arcu.
+## Make it yours: the three files to edit first
 
-Laoreet fusce nec class porttitor mus proin aenean, velit vestibulum feugiat porta egestas sapien posuere, conubia nisi tempus varius hendrerit tortor. Congue aliquam scelerisque neque vivamus habitasse semper mauris pellentesque accumsan posuere, suspendisse lectus gravida erat sagittis arcu praesent mus ornare. Habitasse nibh nam morbi mollis senectus erat risus, cum sollicitudin class platea congue mattis venenatis, luctus aenean parturient hendrerit malesuada ante. Mus auctor tincidunt consequat massa tortor nulla luctus habitasse vestibulum quis velit, laoreet sagittis cum facilisi in sem tellus leo vulputate vehicula bibendum orci, felis nisl blandit lacus convallis congue turpis magna facilisis condimentum.
+**`src/config.yaml`.** Change `site.name` and `site.site` (your final URL, needed for the sitemap, RSS and Open Graph tags), then the default `metadata.title` and `metadata.description`. The `apps.blog` block controls the blog: set `isEnabled: false` if you do not want one, or change `postsPerPage` and the `permalink` pattern.
 
-Dictumst pellentesque urna donec sociis suscipit montes consequat, commodo quam habitasse senectus fringilla maecenas, inceptos magna tristique eu nullam nam. Maecenas orci nibh hac eu tristique ut penatibus ultrices ante, pellentesque cubilia pharetra dis facilisis aliquam praesent malesuada vivamus, commodo cras velit convallis molestie nec tellus augue. Etiam ut convallis risus id dapibus platea laoreet accumsan, habitant et aenean netus inceptos iaculis per, mauris curae at ligula odio ad eu. Mauris erat tempor interdum sapien commodo per nullam tortor, fusce facilisis vehicula egestas dui nulla conubia ut fames, fringilla et tincidunt penatibus facilisi at mollis.
+**`src/navigation.ts`.** Replace the demo menus with your pages. Each entry is `{ text, href }`; use `getPermalink('/about')` for internal links so the base path is respected if you ever deploy under a sub-folder.
 
-Fermentum sociosqu litora primis sollicitudin fusce diam consequat vehicula per lobortis et, viverra sodales magna rutrum sed mollis faucibus molestie purus montes est, risus nostra congue venenatis lectus enim torquent eros dis dapibus. Dui suscipit scelerisque massa ligula euismod accumsan augue, magna vel lacus ante nullam senectus commodo, viverra cubilia eros eget penatibus tempor. Mattis mauris hac felis semper dui sociis faucibus mollis ornare pretium aliquam velit nisl, quis litora sem at vel duis rutrum imperdiet natoque viverra himenaeos tempor.
+**`src/components/CustomStyles.astro`.** Your brand colours: `--aw-color-primary`, `--aw-color-secondary` and `--aw-color-accent`, plus the text and background colours, once for light and once for dark. Everything in the template reads these variables. Fonts are declared in `astro.config.ts` (the `fonts` entry, served by Astro's Fonts API) and mapped to `--aw-font-*` in the same file. The [customisation guide](/how-to-customize-astrowind-to-your-brand) covers this in depth.
 
-Integer eu tristique purus luctus vivamus porttitor vel nisl, tortor malesuada augue vulputate diam velit pellentesque sodales, duis phasellus vestibulum fermentum leo facilisi porta. Hac porttitor cum dapibus volutpat quisque odio taciti nulla senectus mollis curae, accumsan suscipit cubilia tempor ligula in venenatis justo leo erat, magna tincidunt nullam lacinia luctus malesuada non vivamus praesent pharetra. Non quam felis montes pretium volutpat suspendisse lacus, torquent magna dictumst orci libero porta, feugiat taciti cras ridiculus aenean rutrum. Tellus nostra tincidunt hac in ligula mi vulputate venenatis pellentesque urna dui, at luctus tristique quisque vel a dignissim scelerisque platea pretium, suspendisse ante phasellus porttitor quis aliquam malesuada etiam enim nullam.
+## Edit the home page
 
-Hendrerit taciti litora nec facilisis diam vehicula magnis potenti, parturient velit egestas nisl lobortis tincidunt rutrum cursus, fusce senectus mi massa primis mattis rhoncus. Accumsan est ac varius consequat vulputate, ligula cursus euismod sagittis inceptos scelerisque, lacus malesuada torquent dictumst. Volutpat morbi metus urna rhoncus nunc tempor molestie, congue curabitur quis interdum posuere. Mollis viverra velit tortor mus netus nunc molestie metus, sem massa himenaeos luctus feugiat taciti iaculis fames porttitor, leo arcu consequat gravida dapibus pulvinar elementum.
+Open `src/pages/index.astro`. A page is a layout plus a stack of widgets, each configured with props:
+
+```astro
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Features from '~/components/widgets/Features.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+const metadata = {
+  title: 'Acme: invoices without the spreadsheet',
+  description: 'Send, track and reconcile invoices in one place.',
+};
+---
+
+<Layout metadata={metadata}>
+  <Hero
+    tagline="Invoicing"
+    title="Invoices without the spreadsheet"
+    subtitle="Send, track and reconcile in one place."
+    actions={[{ variant: 'primary', text: 'Start free', href: '#pricing' }]}
+    image={{ src: '~/assets/images/hero-image.png', alt: 'Product screenshot' }}
+  />
+
+  <Features
+    id="features"
+    title="What you get"
+    items={[
+      { title: 'Recurring invoices', description: 'Set it once.', icon: 'tabler:repeat' },
+      { title: 'Payment links', description: 'Card or bank transfer.', icon: 'tabler:credit-card' },
+    ]}
+  />
+
+  <CallToAction title="Ready?" actions={[{ variant: 'primary', text: 'Start free', href: '/signup' }]} />
+</Layout>
+```
+
+Every widget accepts `title`, `subtitle`, `tagline`, an `id` for anchors and a `bg` slot for a custom background. Icons come from the [Tabler](https://tabler.io/icons) set through `astro-icon`. The full catalogue of widgets, with their props and the demo page where each is used, is in `.agents/skills/use-widgets.md`; the six landing pages under `src/pages/landing/` show them combined into complete pages.
+
+## Publish a post
+
+Create `src/data/post/hello-world.md`:
+
+```markdown
+---
+publishDate: 2026-09-06T00:00:00Z
+title: Hello, world
+excerpt: The first post on the new site.
+image: ~/assets/images/hello.jpg
+category: News
+tags:
+  - company
+author: Your name
+---
+
+Write in Markdown. Headings, lists, tables, code blocks and images all work;
+use the `.mdx` extension to embed components.
+```
+
+The post appears at `/hello-world` (the `permalink` setting in `config.yaml` decides the pattern), in the blog list, in its category and tag pages, in the RSS feed and in the sitemap. `draft: true` keeps a post out of the build while you work on it; `updateDate` records a revision. The [Markdown demo post](/markdown-elements-demo-post) shows how every element renders.
+
+## Check and build
+
+```shell
+npm run check   # astro check, ESLint and Prettier
+npm run build   # static site in dist/
+npm run preview # serve dist/ locally
+```
+
+The build is fully static: `dist/` is a folder of HTML, CSS, JavaScript and optimised images that any web server can host.
+
+## Deploy
+
+- **Vercel or Netlify:** connect the repository; both detect Astro and use `npm run build` with `dist/` as the output. The README has one-click buttons for both.
+- **Cloudflare Pages, GitHub Pages, any static host:** upload `dist/`. The `deploy-cloudflare` and `deploy-with-base-path` skills in `.agents/skills/` cover the two cases that need a setting.
+- **Your own server:** the repository includes a `Dockerfile` that serves `dist/` with nginx.
+
+After the first deploy, set `site.site` in `config.yaml` to the real URL if you have not already, so canonical links, the sitemap and social previews point to the right place.
+
+## Next steps
+
+- [Customise the template to your brand](/how-to-customize-astrowind-to-your-brand): colours, fonts, logo, favicons.
+- [How the template works under the hood](/astrowind-template-in-depth): the integration, permalinks, images and metadata.
+- Working with an AI coding assistant? The repository ships an `AGENTS.md` and step-by-step skills in `.agents/skills/` so the assistant follows the template's conventions. [Here is how to get the most out of it](/build-websites-with-ai-and-astrowind).

@@ -1,64 +1,116 @@
 ---
 publishDate: 2023-08-06T00:00:00Z
+updateDate: 2026-09-06T00:00:00Z
 title: How to customize AstroWind template to suit your branding
-excerpt: Personalize AstroWind template for your brand. Our guide unlocks seamless customization steps for a unique online presence.
+excerpt: Colours for light and dark mode, fonts, logo, favicons, the announcement bar, the header and footer, and the tokens you can use from Tailwind or shadcn/ui. Every file named.
 image: https://images.unsplash.com/photo-1546984575-757f4f7c13cf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80
+category: Documentation
 tags:
   - astro
   - tailwind css
   - theme
-metadata:
-  canonical: https://astrowind.vercel.app/how-to-customize-astrowind-to-your-brand
 ---
 
-## Congue justo vulputate nascetur convallis varius orci fringilla nulla pharetr
+The demo is blue, uses Inter and says "AstroWind" everywhere. Making it yours is a handful of files, and none of them is inside a component you would rather not touch. This guide goes through them in the order most projects need.
 
-Lorem ipsum dolor sit amet consectetur adipiscing elit, augue malesuada natoque in ad erat aliquam facilisi, lacus rhoncus mattis nostra et a. Mauris malesuada rutrum dis libero egestas mus vulputate, fermentum ad morbi phasellus faucibus tellus leo urna, blandit ullamcorper diam imperdiet dictumst litora. Fringilla eros malesuada lobortis mi odio metus leo, blandit imperdiet augue fames aliquam ultricies tortor massa, duis magnis hendrerit id magna sociosqu. Aptent mi imperdiet id sapien suscipit ut netus turpis, lacinia ac porttitor potenti dui taciti at egestas, fermentum neque nascetur sodales tortor nunc congue.
+## Colours: one file, two palettes
 
-Accumsan torquent vitae convallis duis cras risus pretium nulla mi litora sociosqu, facilisi bibendum eget faucibus metus felis egestas auctor malesuada. Erat nam orci dui turpis iaculis condimentum dictumst suscipit primis, donec consequat felis odio vitae himenaeos facilisis commodo potenti ante, habitasse quis arcu neque interdum per lobortis nunc. Ultricies lobortis ullamcorper sagittis et sollicitudin sociis sed dignissim posuere, nisi pharetra erat varius id aenean lacinia commodo morbi primis, ornare diam proin nunc volutpat nec dui egestas.
+`src/components/CustomStyles.astro` declares the palette as CSS variables, once for light mode under `:root` and once for dark mode under `.dark`:
 
-## Mauris velit laoreet vitae cursus augue
+```css
+:root {
+  --aw-color-primary: rgb(1 97 239);
+  --aw-color-secondary: rgb(1 84 207);
+  --aw-color-accent: rgb(109 40 217);
 
-- Massa egestas consequat nisl id volutpat, varius neque aenean.
+  --aw-color-text-heading: rgb(0 0 0);
+  --aw-color-text-default: rgb(16 16 16);
+  --aw-color-text-muted: rgb(16 16 16 / 66%);
+  --aw-color-bg-page: rgb(255 255 255);
+}
 
-- Venenatis tincidunt eros pretium viverra lacinia convallis, turpis orci condimentum fusce.
+.dark {
+  --aw-color-primary: rgb(1 97 239);
+  /* … */
+  --aw-color-bg-page: rgb(3 6 32);
+}
+```
 
-- Pellentesque in aliquet nisi gravida netus, commodo aptent volutpat.
+- `primary` is the brand colour: buttons, links, icons, the active menu item.
+- `secondary` is used for taglines and secondary emphasis; `accent` for the occasional highlight.
+- The three text colours and the page background are what every widget reads for headings, body copy, muted captions and surfaces.
 
-- Nisi rutrum eros euismod, parturient ullamcorper mattis a, dapibus vestibulum.
+Change the values and the whole site follows, including the new widgets, because components use Tailwind utilities such as `text-primary`, `text-heading`, `text-muted` and `bg-page` that map to these variables in `src/assets/styles/tailwind.css`. Pick a dark-mode primary that stays readable on your dark background; the demo keeps the same blue and lightens it where small text needs contrast.
 
-Senectus fermentum tristique egestas bibendum per dictumst purus pharetra cras dictum pulvinar, vitae nec eros montes dis quis nullam duis netus litora, feugiat cubilia mollis porttitor velit ligula metus ante risus eu.
+The header has its own link colour if you want one: set `--aw-color-link` and the active menu item uses it instead of `primary`.
 
-Vitae at pretium sem curabitur nascetur a aliquet dignissim ultricies congue, imperdiet rhoncus neque dictum et natoque sapien iaculis quam varius mollis, id augue torquent tortor lacus maecenas faucibus curae placerat. Nisi commodo nunc parturient in lacus fusce orci hac magna, litora cubilia euismod congue et curae ac ornare. Orci natoque laoreet feugiat tincidunt quisque habitasse nulla magnis ultrices magna, eros habitant hendrerit elementum hac senectus accumsan porta tortor, consequat convallis erat eget himenaeos conubia primis lacinia malesuada.
+## Fonts
 
-Felis ad nisi taciti cubilia dis nulla potenti, tincidunt nascetur integer enim est at congue, aliquet sed lectus donec nam quam. Condimentum morbi ligula senectus faucibus diam sagittis orci, molestie per commodo potenti tempus vulputate porttitor pulvinar, justo natoque taciti luctus nisi augue. Ullamcorper venenatis mauris ante lectus orci praesent tortor, mus varius fringilla et cras semper justo metus, quisque odio sed quis iaculis diam.
+Fonts are loaded with Astro's Fonts API, declared in `astro.config.ts`:
 
-Mus dictum ante cum lectus dapibus sed arcu accumsan facilisi convallis potenti, tincidunt duis habitant diam magna sollicitudin orci pulvinar penatibus in, aptent nascetur mollis elementum natoque nibh mattis egestas class praesent. Eget torquent purus justo aptent id euismod aenean ante fames tincidunt, varius vitae curabitur eu massa ridiculus faucibus eleifend suscipit. Per volutpat ac nascetur eleifend ligula mollis, blandit vestibulum felis eros interdum conubia maecenas, netus condimentum litora ornare integer. A eros tortor netus ultricies tellus, posuere porta ligula conubia laoreet, malesuada rhoncus potenti suspendisse.
+```ts
+fonts: [
+  {
+    provider: fontProviders.fontsource(),
+    name: 'Inter',
+    cssVariable: '--font-inter',
+    weights: ['100 900'],
+    styles: ['normal'],
+    subsets: ['latin'],
+    fallbacks: ['sans-serif'],
+  },
+],
+```
 
-Commodo ut augue ac donec lacus nisl pharetra iaculis, venenatis mattis vivamus est pellentesque euismod tempor litora etiam, non facilisi bibendum cursus odio dui auctor. Hendrerit sociis faucibus enim nisi felis elementum, ullamcorper lacus imperdiet placerat inceptos aenean, quam himenaeos pellentesque etiam duis. Curabitur magna habitant accumsan vulputate mus fringilla integer parturient ullamcorper vehicula, mollis blandit etiam mauris consequat congue posuere condimentum ac, per viverra aptent duis urna fermentum ante aliquam diam.
+Add another entry for a second face (a serif for headings, say), then point the `--aw-font-sans`, `--aw-font-serif` and `--aw-font-heading` variables in `CustomStyles.astro` at the new `cssVariable`. Astro downloads the files at build time, self-hosts them and generates the `@font-face` rules with metric-adjusted fallbacks, so there is no request to a third party at runtime. The `Font` component in `src/layouts/Layout.astro` injects them.
 
-Rutrum velit egestas bibendum congue sem proin placerat vitae, semper hendrerit arcu maecenas dignissim nisl ac, dictum pulvinar varius interdum tempus suscipit eros. Ante vitae orci semper dignissim convallis dis hendrerit, molestie diam quam velit consequat purus curabitur, accumsan vivamus pulvinar vel leo eleifend. Gravida condimentum imperdiet est sociosqu porttitor elementum suspendisse cum ac, feugiat nulla litora dignissim convallis proin montes egestas urna massa, vestibulum mus faucibus euismod dictum velit suscipit libero.
+## Logo and site name
 
-Risus pellentesque montes laoreet orci natoque erat, vivamus hac sociosqu volutpat mauris sodales, ultricies odio feugiat viverra lectus. Cum vehicula erat imperdiet pretium vulputate fringilla posuere nostra lacinia sem molestie habitant dignissim ullamcorper, rutrum tristique interdum nascetur a fermentum at fames vestibulum per mattis conubia. Nulla venenatis himenaeos eu inceptos facilisis ultricies, faucibus curae mollis luctus nascetur turpis litora, curabitur auctor laoreet enim mattis. Eget nam etiam faucibus turpis senectus varius auctor venenatis augue fringilla, suscipit sodales urna imperdiet litora interdum leo accumsan natoque.
+The name comes from `site.name` in `src/config.yaml`; `src/components/Logo.astro` renders it with a rocket emoji. Replace the component's content with your mark:
 
-Hac proin sapien enim a turpis fusce aliquam duis quis, malesuada eget laoreet ad augue tempus cubilia potenti blandit, auctor cum at hendrerit ullamcorper donec suscipit cursus. Ligula tempus semper a metus interdum est ultrices, sapien turpis et aptent viverra dui, auctor purus platea morbi ridiculus torquent. Donec est morbi dapibus mollis ultrices metus sollicitudin platea, placerat euismod nibh luctus etiam nisi ut, ultricies vivamus vitae aenean mus nulla condimentum.
+```astro
+---
+import { Image } from 'astro:assets';
+import logo from '~/assets/images/logo.svg';
+---
 
-Curabitur dapibus rutrum luctus mollis nunc fringilla tellus etiam curae fames euismod aliquet eu, magnis purus venenatis pharetra integer blandit elementum varius dictumst viverra donec ridiculus. Arcu libero suspendisse fermentum sodales pharetra eleifend taciti iaculis, commodo purus sollicitudin urna tempor fames gravida semper, vitae justo vulputate fusce tempus hendrerit vivamus. Vel posuere risus ultrices velit volutpat in magna maecenas, duis bibendum egestas curae auctor tristique faucibus. Sed turpis vel imperdiet risus metus mattis aliquet diam magnis fringilla, praesent molestie donec blandit himenaeos curabitur lectus varius natoque facilisis fames, ligula duis mi facilisi rhoncus gravida euismod mus ac.
+<Image src={logo} alt="Acme" width={120} height={32} class="self-center" />
+```
 
-Nunc aptent facilisi imperdiet quam faucibus donec taciti habitant venenatis aliquam in ridiculus curabitur nostra, eu sociis cubilia accumsan sapien vitae sodales praesent lacus mi mollis varius quis. Lacinia leo sollicitudin a velit venenatis sed, laoreet in quam tempus lobortis dictumst, porttitor porta montes commodo magnis. Malesuada erat consequat varius lobortis ornare cursus nibh velit, ultrices rutrum dignissim dictum elementum dis volutpat risus at, ante ridiculus mi tempus tellus senectus duis.
+Keep the `class="self-center"` so it aligns inside the header. If your logo needs a light and a dark version, render both and toggle them with `dark:hidden` and `hidden dark:block`.
 
-Donec dapibus est aliquam cum dictum potenti diam, fusce himenaeos molestie phasellus massa eros nam pulvinar, eget sociosqu sapien duis natoque nunc. Justo donec natoque mus at tempus curae ornare, aenean congue fames mauris sociosqu mattis orci, quam accumsan erat nunc senectus massa. Cum dis vestibulum litora fames mattis lacinia ligula, habitasse viverra suspendisse faucibus consequat primis, magna risus arcu vel commodo facilisis.
+## Favicons and the social image
 
-Curae tincidunt sed enim eleifend non ornare mus interdum augue, lectus ut quis ultricies habitant varius integer fringilla, aptent volutpat eget nisi cum in conubia pretium. Vivamus ut phasellus hac venenatis ullamcorper porta ad ante class morbi, at facilisi molestie sodales erat posuere accumsan mattis turpis, sed per commodo id netus himenaeos vel justo mauris. Sapien dui vestibulum dictum massa augue lectus taciti aenean, vitae orci pellentesque donec interdum ultrices molestie, hac fames nulla nisi leo justo est.
+The favicons live in `src/assets/favicons/`: `favicon.ico`, `favicon.svg` and `apple-touch-icon.png`. Replace the three files keeping the names. The default Open Graph image used when a page does not set its own is `src/assets/images/default.png` (1200 × 628); replace it too, or point `metadata.openGraph.images` in `config.yaml` at a different file. The `set-open-graph-image` skill in `.agents/skills/` has the details.
 
-Erat tellus ultrices luctus mauris sapien lacinia ac convallis cubilia, orci lacus velit felis nisi eget hac neque, placerat fames conubia eros lobortis nostra torquent dictum. Ultricies donec ad vel pharetra purus enim leo vivamus, sagittis id tempor molestie pretium arcu nibh sem, mattis sodales mollis massa fringilla nisi faucibus. Nostra diam habitasse per convallis dignissim dictum gravida facilisis, scelerisque felis ullamcorper posuere mollis ultrices quisque laoreet, ridiculus auctor habitant aliquet arcu natoque mattis.
+## Header, footer and announcement bar
 
-Porttitor sollicitudin tellus vel libero mi morbi dui sem viverra taciti, pharetra habitasse placerat nullam auctor praesent risus nulla tempus proin, integer conubia eros ligula ultrices cubilia class lectus tincidunt. Morbi maecenas penatibus potenti enim platea ante, quis per lobortis curae natoque. Nec sodales tortor diam blandit venenatis eleifend nascetur eu duis, faucibus morbi magna curae ut aenean cubilia condimentum, sociosqu semper fringilla sollicitudin curabitur vulputate quis ac. Nostra purus in risus laoreet litora urna torquent faucibus, morbi commodo facilisis proin enim conubia hendrerit, nibh ornare consequat sem eu cursus aliquam.
+`src/navigation.ts` exports `headerData` (menu entries, with optional dropdown `links`, and the `actions` buttons) and `footerData` (column links, secondary links, social links and the footer note). Internal links go through `getPermalink()` so they respect `base` if you deploy under a sub-path.
 
-Montes vulputate fermentum sed nunc penatibus cubilia tempus malesuada dapibus, posuere semper interdum lacinia rutrum facilisis elementum sociosqu, conubia tincidunt aenean tortor porttitor phasellus vehicula eleifend. Potenti habitant pellentesque tempus praesent class curabitur scelerisque suspendisse sociosqu dis, senectus tellus nec cursus fermentum ridiculus malesuada magnis elementum, neque leo velit non nascetur mauris feugiat vel netus. Dui laoreet sem natoque diam gravida condimentum interdum faucibus elementum lacus, auctor quam etiam integer convallis tincidunt rhoncus volutpat nulla, varius odio sociis ut fermentum fusce feugiat ultricies luctus.
+The header itself is `src/components/widgets/Header.astro`. Its props cover the common needs without editing it: `isSticky`, `isDark`, `isFullWidth`, `showToggleTheme`, `showRssFeed`, `position` (`left`, `center`, `right`). Pages can pass their own header (the personal and mobile-app demos do) through the `header` slot of `PageLayout`.
 
-Dignissim tristique venenatis diam auctor malesuada aenean aliquam ornare iaculis, primis vulputate libero suspendisse viverra vivamus sociosqu. Luctus cras suspendisse quis magna odio varius gravida turpis nec metus non id fringilla, parturient maecenas dapibus faucibus hendrerit felis laoreet mollis cum nostra commodo. Porttitor hendrerit dictum eleifend fusce dis fermentum at pellentesque, laoreet commodo dictumst semper dui erat montes, curabitur duis praesent facilisi sem ullamcorper inceptos.
+The bar above the header is the `Announcement` widget in `src/layouts/Layout.astro`. It takes `badge`, `text`, `href` and `showStars`; remove the component to remove the bar.
 
-Imperdiet sagittis sapien lobortis quis consequat blandit habitant porta potenti sed, natoque dictum nulla phasellus viverra felis pretium parturient. Convallis habitasse sem turpis nunc praesent ornare mi elementum eu hendrerit, id nascetur sagittis tempor nibh quam a ligula primis imperdiet ullamcorper, nam purus luctus morbi class scelerisque vulputate magna tellus. Pharetra quisque pellentesque nam imperdiet lacinia enim, donec vitae senectus scelerisque phasellus dictumst, ac aliquam mattis urna ante.
+## Tokens for your own components
 
-Habitant praesent pulvinar scelerisque per phasellus lobortis velit, magnis odio himenaeos primis curabitur senectus, nascetur ullamcorper convallis nunc placerat nisl. Porta tellus commodo praesent ullamcorper cursus senectus tempor vivamus, penatibus eu purus ultrices posuere mi sodales, urna quisque accumsan imperdiet convallis aptent nisl. Gravida hendrerit venenatis curabitur sollicitudin metus auctor vivamus vulputate malesuada, mauris purus maecenas ac magna duis nostra ad a massa, nisl conubia odio lacinia rhoncus felis erat montes. Nostra eros proin mi venenatis enim semper ad magnis netus, in vestibulum ornare ac fusce aliquet aptent non condimentum faucibus, tempor arcu potenti blandit magna consequat luctus nam.
+Two sets of tokens are available in any component or page:
+
+- **AstroWind utilities:** `text-primary`, `text-secondary`, `text-accent`, `text-heading`, `text-muted`, `bg-page`, `bg-dark`, plus the `btn`, `btn-primary`, `btn-secondary` and `btn-tertiary` button classes and `font-heading`.
+- **shadcn/ui-compatible tokens:** `bg-background`, `text-foreground`, `bg-card`, `border-border`, `ring-ring`, `text-muted-foreground`, `bg-destructive` and the rest of the shadcn palette, derived from the same variables in `src/assets/styles/shadcn.css`. Components copied from shadcn/ui or from the community blocks built on it render with your colours without editing their classes. Note that `primary`, `secondary`, `accent` and `muted` keep their AstroWind meaning.
+
+Utilities of your own belong in `tailwind.css` as `@utility` blocks, next to the existing ones.
+
+## Dark mode behaviour
+
+`ui.theme` in `config.yaml` decides the default: `system` follows the operating system and shows the toggle; `light` or `dark` set a default but keep the toggle; `light:only` and `dark:only` remove the toggle. The choice is stored in `localStorage` and applied before the first paint, so there is no flash.
+
+## A checklist
+
+1. Palette in `CustomStyles.astro`, light and dark.
+2. Fonts in `astro.config.ts`, mapped in `CustomStyles.astro`.
+3. `Logo.astro`, the three favicons and `default.png`.
+4. `site.name`, `site.site`, default title and description in `config.yaml`.
+5. Menus in `navigation.ts`; the announcement bar in `Layout.astro`.
+6. `npm run check`, then look at every page in light and dark mode.
+
+Step-by-step versions of several of these live in `.agents/skills/` (`styling.md`, `customize-header.md`, `set-open-graph-image.md`, `use-shadcn-tokens.md`), written so that an AI coding assistant can carry them out, and short enough to follow yourself.

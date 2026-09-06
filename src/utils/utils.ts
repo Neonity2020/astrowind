@@ -9,6 +9,17 @@ export const formatter: Intl.DateTimeFormat = new Intl.DateTimeFormat(I18N?.lang
 
 export const getFormattedDate = (date: Date): string => (date ? formatter.format(date) : '');
 
+/**
+ * Shortens text at a word boundary so it fits a limit (meta descriptions are
+ * cut by search engines at about 155 characters). Adds an ellipsis when cut.
+ */
+export const truncateAtWord = (text = '', limit = 155): string => {
+  if (text.length <= limit) return text;
+  const cut = text.slice(0, limit - 1);
+  const lastSpace = cut.lastIndexOf(' ');
+  return `${(lastSpace > limit / 2 ? cut.slice(0, lastSpace) : cut).replace(/[\s,;:.]+$/, '')}…`;
+};
+
 export const trim = (str = '', ch?: string) => {
   let start = 0,
     end = str.length || 0;
