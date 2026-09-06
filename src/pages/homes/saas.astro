@@ -3,7 +3,7 @@ import Layout from '~/layouts/PageLayout.astro';
 
 import Header from '~/components/widgets/Header.astro';
 import Hero2 from '~/components/widgets/Hero2.astro';
-import Features from '~/components/widgets/Features.astro';
+import Bento from '~/components/widgets/Bento.astro';
 import Steps2 from '~/components/widgets/Steps2.astro';
 import Content from '~/components/widgets/Content.astro';
 import Pricing from '~/components/widgets/Pricing.astro';
@@ -67,43 +67,53 @@ const metadata = {
 
   <!-- Features Widget *************** -->
 
-  <Features
+  <Bento
     id="features"
     title="Why choose AstroWind?"
     subtitle="Each of the following features enhances AstroWind's value proposition."
-    columns={2}
     items={[
       {
-        title: 'Integration of Astro v7 and Tailwind CSS v4',
+        title: 'Astro v7 and Tailwind CSS v4',
         description:
-          'Offers a powerful combination that enhances both the development process and the end-user experience. Also, allows to build dynamic and visually stunning websites with optimized performance.',
+          'A powerful combination that enhances both the development process and the end-user experience: dynamic, visually stunning websites with optimized performance.',
         icon: 'tabler:layers-union',
+        span: 2,
+        image: {
+          src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80',
+          alt: 'Laptops on a desk during a working session',
+        },
       },
       {
-        title: 'Versatile design for startups, small businesses, and more',
-        description: `Easily customize AstroWind to harmonize with the unique branding and identity of your venture. AstroWind's versatile design adapts to suit your needs.`,
+        title: 'Versatile design',
+        description:
+          'Startups, small businesses, agencies, portfolios: customize it to match the branding of your venture.',
         icon: 'tabler:artboard',
       },
       {
-        title: 'Effortless customization for portfolios and marketing sites',
+        title: 'Effortless customization',
         description:
-          'With intuitive customization, easily showcase portfolio pieces, case studies, project highlights, and relevant content. Ideal for creative professionals and businesses looking to highlight their expertise.',
+          'Showcase portfolio pieces, case studies and project highlights with widgets that only need props.',
         icon: 'tabler:writing',
       },
       {
-        title: 'Optimized landing pages and engaging blogs',
-        description: `Landing pages are strategically designed to captivate visitors and prompt specific actions. Additionally, the blog creation feature empowers sharing insights, engaging the audience.`,
+        title: 'Landing pages and blog',
+        description: 'Six landing page demos designed to prompt action, plus a Markdown/MDX blog to share insights.',
         icon: 'tabler:podium',
       },
       {
-        title: 'Fast loading times and production-ready code',
-        description: `Using Astro v7 ensures fast loading and seamless rendering, enhancing browsing. The code follows best practices, improving user experience, SEO, and reducing bounce rates.`,
+        title: 'Fast and production-ready',
+        description: 'Static output, optimized images and best-practice code: better SEO and fewer bounces.',
         icon: 'tabler:rocket',
       },
       {
-        title: 'SEO-optimized structure for enhanced visibility',
-        description: `Follows SEO best practices with clean code, semantic HTML markup, and fast loading, enhancing search engine rankings. AstroWind's SEO structure ensures visibility to potential customers and clients.`,
+        title: 'SEO-optimized structure',
+        description: 'Semantic HTML, metadata, Open Graph, sitemap and RSS out of the box.',
         icon: 'tabler:eyeglass',
+        span: 2,
+        image: {
+          src: 'https://images.unsplash.com/photo-1516321497487-e288fb19713f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80',
+          alt: 'A tidy desk with a laptop and notebook',
+        },
       },
     ]}
   />

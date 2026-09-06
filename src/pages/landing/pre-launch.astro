@@ -5,7 +5,8 @@ import Hero2 from '~/components/widgets/Hero2.astro';
 import Contact from '~/components/widgets/Contact.astro';
 import Note from '~/components/widgets/Note.astro';
 import Features2 from '~/components/widgets/Features2.astro';
-import Steps from '~/components/widgets/Steps.astro';
+import Timeline from '~/components/widgets/Timeline.astro';
+import Countdown from '~/components/widgets/Countdown.astro';
 import Stats from '~/components/widgets/Stats.astro';
 import Content from '~/components/widgets/Content.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
@@ -76,7 +77,18 @@ const faqs = [
     }}
   />
 
-  <!-- 2. The form, first: this page exists to collect it -->
+  <!-- 2. Countdown: a real date makes the launch concrete -->
+
+  <Countdown
+    id="launch"
+    tagline="Launch day"
+    title="The reveal is scheduled"
+    subtitle="A visible date beats a vague “coming soon”: it tells visitors how long they are being asked to wait and gives the email sequence a natural rhythm."
+    date="2026-12-01T09:00:00Z"
+    expiredText="It launched. From here on, this page becomes the product page."
+  />
+
+  <!-- 3. The form, first: this page exists to collect it -->
 
   <Contact
     id="notify"
@@ -96,7 +108,7 @@ const faqs = [
     description="On a pre-launch page the form is the product. It comes right after the hero, asks for one thing and says exactly what the signup gets. Everything below exists for the visitors who need more before they type."
   />
 
-  <!-- 3. What is coming: three cards -->
+  <!-- 4. What is coming: three cards -->
 
   <Features2
     id="coming"
@@ -126,42 +138,44 @@ const faqs = [
     ]}
   />
 
-  <!-- 4. Roadmap: make the window concrete -->
+  <!-- 5. Roadmap: make the window concrete -->
 
-  <Steps
+  <Timeline
     id="roadmap"
     tagline="Roadmap"
     title="From this page to launch day"
+    subtitle="A dated timeline sets expectations. Each step is a promise the emails will keep."
     items={[
       {
-        title: 'Now: <span class="font-medium">the waitlist opens</span>',
+        date: 'Week 0',
+        title: 'The waitlist opens',
         description:
           'This page goes live with the form, the three facts above and one real teaser. Signups start counting.',
         icon: 'tabler:bell-ringing',
+        highlight: true,
       },
       {
-        title: 'Next: <span class="font-medium">progress updates</span>',
+        date: 'Weeks 2 to 6',
+        title: 'Progress updates',
         description:
           'Two or three short emails: what shipped, what changed, one behind-the-scenes image. Keep the list warm.',
         icon: 'tabler:mail-fast',
       },
       {
-        title: 'Then: <span class="font-medium">early access for the list</span>',
+        date: 'Week 8',
+        title: 'Early access for the list',
         description:
           'Subscribers get in first, at the price promised on this page. Their feedback shapes the public release.',
         icon: 'tabler:users-group',
       },
       {
-        title: 'Launch: <span class="font-medium">this page becomes the product page</span>',
+        date: 'Launch day',
+        title: 'This page becomes the product page',
         description:
           'Same URL, new content: the coming-soon page turns into the product details page so no link goes stale.',
         icon: 'tabler:confetti',
       },
     ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1552664688-cf412ec27db2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1674&q=80',
-      alt: 'A team planning on a whiteboard',
-    }}
   />
 
   <!-- 5. Launch facts: numbers you can stand behind before launch -->
@@ -225,8 +239,6 @@ const faqs = [
     tagline="FAQ"
     title="Questions people ask before joining a waitlist"
     subtitle="Short answers. The same answers feed a FAQ rich result in search, which is how a coming-soon page gets found before launch."
-    columns={2}
-    classes={{ container: 'max-w-6xl' }}
     items={faqs}
     schema
   />

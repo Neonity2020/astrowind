@@ -3,6 +3,7 @@ import Layout from '~/layouts/PageLayout.astro';
 
 import Hero from '~/components/widgets/Hero.astro';
 import Note from '~/components/widgets/Note.astro';
+import Features from '~/components/widgets/Features.astro';
 import Features2 from '~/components/widgets/Features2.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import Content from '~/components/widgets/Content.astro';
@@ -10,7 +11,6 @@ import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
-import Bento from '~/components/widgets/Bento.astro';
 
 const metadata = {
   title: 'AstroWind — Free template for creating websites with Astro + Tailwind CSS',
@@ -56,7 +56,7 @@ const metadata = {
 
   <!-- Features Widget *************** -->
 
-  <Bento
+  <Features
     id="features"
     tagline="Features"
     title="What you get with AstroWind"
@@ -67,8 +67,6 @@ const metadata = {
         description:
           'A seamless integration between two great frameworks that offer high productivity, performance and versatility. Now powered by Tailwind CSS v4.',
         icon: 'tabler:brand-tailwind',
-        span: 2,
-        image: { src: '~/assets/images/hero-image.png', alt: 'AstroWind pages built with Astro and Tailwind CSS' },
       },
       {
         title: 'Ready-to-use Components',
@@ -99,8 +97,6 @@ const metadata = {
         description:
           'Embracing a culture that is open to new ideas and contributions is integral fostering innovation, collaboration, and a dynamic user experience.',
         icon: 'tabler:bulb',
-        span: 2,
-        href: 'https://github.com/arthelokyo/astrowind',
       },
     ]}
   />
@@ -333,7 +329,6 @@ const metadata = {
     title="Frequently Asked Questions"
     subtitle="The questions people ask before they clone the repository, answered briefly. For step-by-step tasks, the repository ships skills your AI coding assistant can follow."
     tagline="FAQs"
-    classes={{ container: 'max-w-6xl' }}
     schema
     items={[
       {
