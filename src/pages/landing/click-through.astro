@@ -4,9 +4,9 @@ import Layout from '~/layouts/LandingLayout.astro';
 import Hero2 from '~/components/widgets/Hero2.astro';
 import Note from '~/components/widgets/Note.astro';
 import Content from '~/components/widgets/Content.astro';
-import Features from '~/components/widgets/Features.astro';
+import Features3 from '~/components/widgets/Features3.astro';
 import Steps from '~/components/widgets/Steps.astro';
-import Stats from '~/components/widgets/Stats.astro';
+import Comparison from '~/components/widgets/Comparison.astro';
 import Testimonials from '~/components/widgets/Testimonials.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
@@ -125,7 +125,7 @@ const faqs = [
 
   <!-- 3. What to put on it -->
 
-  <Features
+  <Features3
     id="anatomy"
     tagline="Anatomy"
     title="What a click-through page needs to carry"
@@ -205,16 +205,22 @@ const faqs = [
 
   <!-- 5. Rules of thumb -->
 
-  <Stats
+  <Comparison
     id="rules"
     tagline="Rules of thumb"
-    title="Constraints that keep a click-through page honest"
-    subtitle="Limits, not results. If your page breaks one of these, fix that first."
-    stats={[
-      { title: 'destination', amount: '1' },
-      { title: 'form fields', amount: '0' },
-      { title: 'buttons, same label and URL', amount: '3' },
-      { title: 'screens before the first button', amount: '0' },
+    title="What belongs on this page, and what belongs on the next"
+    subtitle="A click-through page is a bridge. The table shows what stays on the bridge and what waits on the other side."
+    mode="versus"
+    firstColumnLabel="Element"
+    columns={[{ title: 'Click-through page', highlight: true }, { title: 'Destination page' }]}
+    rows={[
+      { label: 'Destinations', values: ['1', 'As many as needed'] },
+      { label: 'Form fields', values: ['0', 'The signup or checkout'] },
+      { label: 'Buttons', description: 'Same label, same URL', values: ['3', 'Depends on the page'] },
+      { label: 'Proof', values: ['One or two quotes', 'Case studies, reviews, numbers'] },
+      { label: 'Pricing', values: [false, true] },
+      { label: 'Full feature list', values: [false, true] },
+      { label: 'Screens before the first button', values: ['0', 'Not a concern'] },
     ]}
   />
 
@@ -267,6 +273,7 @@ const faqs = [
     testimonials={[
       {
         testimonial: 'A quote that confirms the promise of the ad and mentions what the destination was like.',
+        rating: 5,
         name: 'Customer name',
         job: 'Role, company (sample testimonial)',
         image: {
@@ -276,6 +283,7 @@ const faqs = [
       },
       {
         testimonial: 'A short one about how long the whole thing took, from click to done.',
+        rating: 5,
         name: 'Customer name',
         job: 'Role, company (sample testimonial)',
         image: {
@@ -285,6 +293,7 @@ const faqs = [
       },
       {
         testimonial: 'A quote that addresses the reason someone would hesitate to click: price, commitment or time.',
+        rating: 5,
         name: 'Customer name',
         job: 'Role, company (sample testimonial)',
         image: {
@@ -310,6 +319,7 @@ const faqs = [
 
   <CallToAction
     id="continue"
+    layout="banner"
     title="Continue to the template"
     subtitle="This page is part of the free AstroWind template: Astro + Tailwind CSS, every block a reusable widget. The button below is the click this page exists for."
     actions={[

@@ -5,7 +5,7 @@ import Hero2 from '~/components/widgets/Hero2.astro';
 import Note from '~/components/widgets/Note.astro';
 import Content from '~/components/widgets/Content.astro';
 import Pricing from '~/components/widgets/Pricing.astro';
-import Features from '~/components/widgets/Features.astro';
+import Bento from '~/components/widgets/Bento.astro';
 import Steps2 from '~/components/widgets/Steps2.astro';
 import Testimonials from '~/components/widgets/Testimonials.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
@@ -175,18 +175,18 @@ const faqs = [
 
   <!-- 4. Retention: why people stay -->
 
-  <Features
+  <Bento
     id="retention"
     tagline="Retention"
     title="What makes subscribers stay"
     subtitle="A subscription page should promise the things that reduce churn, and only the ones you deliver. Six that matter."
-    columns={2}
     items={[
       {
         title: 'A fast first win',
         description:
           'Onboarding that gets the subscriber to the first result in the first session, before the second charge is even close.',
         icon: 'tabler:trophy',
+        span: 2,
       },
       {
         title: 'A predictable rhythm',
@@ -217,6 +217,7 @@ const faqs = [
         description:
           'Cancelling in one click is the strongest reason to sign up in the first place. Make it true and say it.',
         icon: 'tabler:lock-open',
+        span: 3,
       },
     ]}
   />

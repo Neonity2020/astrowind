@@ -5,7 +5,7 @@ import Hero from '~/components/widgets/Hero.astro';
 import Note from '~/components/widgets/Note.astro';
 import Content from '~/components/widgets/Content.astro';
 import Steps2 from '~/components/widgets/Steps2.astro';
-import Stats from '~/components/widgets/Stats.astro';
+import Features2 from '~/components/widgets/Features2.astro';
 import Testimonials from '~/components/widgets/Testimonials.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
@@ -292,16 +292,33 @@ const faqs = [
 
   <!-- 6. Rules of thumb -->
 
-  <Stats
+  <Features2
     id="rules"
     tagline="Rules of thumb"
     title="Constraints that keep a product page honest"
     subtitle="Limits, not results. The numbers about the product itself are in the specifications above."
-    stats={[
-      { title: 'product per page', amount: '1' },
-      { title: 'depths: overview, features, specs', amount: '3' },
-      { title: 'image of the product in use, at least', amount: '1' },
-      { title: 'price, stated on the page', amount: '1' },
+    columns={4}
+    items={[
+      {
+        title: 'One product per page',
+        description: 'A page that sells two things sells neither. Variants are fine; alternatives are not.',
+        icon: 'tabler:box',
+      },
+      {
+        title: 'Three depths',
+        description: 'Overview, features, specifications. Each answers the questions of a more decided buyer.',
+        icon: 'tabler:stack-2',
+      },
+      {
+        title: 'The product in use',
+        description: 'At least one real image of it being used, not only rendered. Buyers trust context.',
+        icon: 'tabler:photo',
+      },
+      {
+        title: 'The price, on the page',
+        description: 'A product page without a price sends the buyer to search for it elsewhere. State it.',
+        icon: 'tabler:tag',
+      },
     ]}
   />
 

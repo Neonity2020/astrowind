@@ -6,9 +6,11 @@ import Headline from '~/components/ui/Headline.astro';
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 import type { Bento as Props } from '~/types';
 
-// Asymmetric card grid ("bento"): items declare how many columns/rows they
-// span and the grid packs them densely. Every row has the same height, so
-// cards line up; an image, when present, fills the bottom of its card.
+// Asymmetric card grid ("bento"). Every card has the same structure: a
+// visual on top (a cropped image, or a soft panel with a large icon) and
+// the text below, so rows line up and no card is left half empty. Items
+// declare how many columns/rows they span; the grid packs them densely.
+// Tip: make the spans add up to a multiple of `columns` to avoid holes.
 
 const {
   title = await Astro.slots.render('title'),
@@ -35,34 +37,49 @@ const spanClass = (span?: number, rowSpan?: number) =>
 
   {
     items.length > 0 && (
-      <div
-        class:list={[
-          'grid grid-cols-1 gap-4 md:gap-5 [grid-auto-flow:dense] md:auto-rows-[minmax(13rem,1fr)]',
-          gridClass,
-        ]}
-      >
+      <div class:list={['grid grid-cols-1 gap-5 md:gap-6 [grid-auto-flow:dense] md:auto-rows-fr', gridClass]}>
         {items.map(({ title: itemTitle, description, icon, image, span, rowSpan, callToAction, href }) => {
           const Card = href ? 'a' : 'div';
           return (
             <Card
               href={href}
               class:list={[
-                'group relative flex flex-col overflow-hidden rounded-2xl border border-gray-200 bg-gray-50 dark:border-slate-700 dark:bg-slate-900 intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade',
-                href ? 'transition hover:border-primary/40 hover:shadow-md' : '',
+                'group flex flex-col overflow-hidden rounded-3xl bg-white ring-1 ring-gray-200 dark:bg-slate-900 dark:ring-slate-700 intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade',
+                href ? 'transition hover:shadow-lg hover:ring-primary/40' : '',
                 spanClass(span, rowSpan),
               ]}
             >
-              <div class="flex flex-col p-6">
-                <div class="flex items-center gap-3">
-                  {icon && (
-                    <span class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                      <Icon name={icon} class="h-6 w-6" />
+              <div class="relative min-h-44 flex-1 overflow-hidden bg-gradient-to-br from-primary/10 via-secondary/5 to-accent/10 dark:from-primary/25 dark:via-transparent dark:to-accent/15">
+                {image ? (
+                  typeof image === 'string' ? (
+                    <Fragment set:html={image} />
+                  ) : (
+                    <Image
+                      class="absolute inset-0 h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.03]"
+                      widths={[400, 768]}
+                      sizes="(max-width: 767px) 100vw, 640px"
+                      width={640}
+                      height={360}
+                      layout="cover"
+                      format="webp"
+                      alt={itemTitle ?? ''}
+                      {...image}
+                    />
+                  )
+                ) : (
+                  icon && (
+                    <span class="absolute inset-0 flex items-center justify-center bg-[radial-gradient(circle,rgb(0_0_0/0.07)_1px,transparent_1px)] [background-size:18px_18px] dark:bg-[radial-gradient(circle,rgb(255_255_255/0.08)_1px,transparent_1px)]">
+                      <span class="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-white text-primary shadow-md ring-1 ring-black/5 dark:bg-slate-800 dark:ring-white/10">
+                        <Icon name={icon} class="h-8 w-8" />
+                      </span>
                     </span>
-                  )}
-                  {itemTitle && <h3 class="text-lg font-bold leading-snug text-heading">{itemTitle}</h3>}
-                </div>
+                  )
+                )}
+              </div>
+              <div class="p-6">
+                {itemTitle && <h3 class="text-lg font-bold leading-snug text-heading">{itemTitle}</h3>}
                 {description && (
-                  <p class="mt-3 text-sm leading-relaxed text-muted text-pretty" set:html={description} />
+                  <p class="mt-2 text-sm leading-relaxed text-muted text-pretty" set:html={description} />
                 )}
                 {callToAction && !href && (
                   <div class="mt-3">
@@ -79,25 +96,6 @@ const spanClass = (span?: number, rowSpan?: number) =>
                   </span>
                 )}
               </div>
-              {image && (
-                <div class="relative mt-auto min-h-40 flex-1 overflow-hidden">
-                  {typeof image === 'string' ? (
-                    <Fragment set:html={image} />
-                  ) : (
-                    <Image
-                      class="absolute inset-0 h-full w-full object-cover object-top"
-                      widths={[400, 768]}
-                      sizes="(max-width: 767px) 100vw, 640px"
-                      width={640}
-                      height={360}
-                      layout="cover"
-                      format="webp"
-                      alt={itemTitle ?? ''}
-                      {...image}
-                    />
-                  )}
-                </div>
-              )}
             </Card>
           );
         })}
