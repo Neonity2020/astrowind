@@ -7,7 +7,8 @@ import type { Timeline as Props } from '~/types';
 
 // Dated timeline for a company history, a product roadmap or a changelog.
 // `vertical`: one column with the date beside each entry. `alternate`:
-// entries zig-zag around a centre line on large screens.
+// entries zig-zag around a centre line on large screens. `ghost` entries
+// (something uncertain, what comes next) are faded, with a dashed marker.
 
 const {
   title = await Astro.slots.render('title'),
@@ -38,10 +39,13 @@ const alternate = layout === 'alternate';
     >
     </div>
     {
-      items.map(({ date, title: itemTitle, description, icon, image, highlight }, index) => (
+      items.map(({ date, title: itemTitle, description, icon, image, highlight, ghost }, index) => (
         <li
           class:list={[
             'relative pl-14 pb-10 last:pb-0 intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade',
+            ghost ? 'opacity-80' : '',
+            // An entry with nothing but a marker still keeps some room around it.
+            !date && !itemTitle && !description && !image ? 'min-h-20' : '',
             alternate
               ? index % 2 === 0
                 ? 'lg:col-start-1 lg:pl-0 lg:pr-16 lg:text-right'
@@ -53,15 +57,30 @@ const alternate = layout === 'alternate';
           <span
             class:list={[
               'absolute top-0 left-0 flex h-10 w-10 items-center justify-center rounded-full border-2 bg-page',
-              highlight ? 'border-primary bg-primary text-white' : 'border-primary/40 text-primary',
+              ghost
+                ? 'border-dashed border-slate-400/70 text-muted'
+                : highlight
+                  ? 'border-primary bg-primary text-white'
+                  : 'border-primary/40 text-primary',
               alternate ? (index % 2 === 0 ? 'lg:left-auto lg:-right-5' : 'lg:-left-5') : '',
             ]}
             aria-hidden="true"
           >
-            <Icon name={icon || 'tabler:point-filled'} class="h-5 w-5" />
+            <Icon name={icon || (ghost ? 'tabler:dots' : 'tabler:point-filled')} class="h-5 w-5" />
           </span>
-          {date && <time class="block text-sm font-semibold uppercase tracking-wide text-primary">{date}</time>}
-          {itemTitle && <h3 class="mt-1 text-xl font-bold text-heading">{itemTitle}</h3>}
+          {date && (
+            <time
+              class:list={[
+                'block text-sm font-semibold uppercase tracking-wide',
+                ghost ? 'text-muted' : 'text-primary',
+              ]}
+            >
+              {date}
+            </time>
+          )}
+          {itemTitle && (
+            <h3 class:list={['mt-1 text-xl font-bold', ghost ? 'text-muted italic' : 'text-heading']}>{itemTitle}</h3>
+          )}
           {description && <p class="mt-2 text-muted text-pretty" set:html={description} />}
           {image &&
             (typeof image === 'string' ? (

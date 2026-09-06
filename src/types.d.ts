@@ -374,6 +374,8 @@ export interface TimelineItem {
   image?: string | Image;
   /** Filled marker for the current or most important entry. */
   highlight?: boolean;
+  /** Faded entry with a dashed connector: a gap, something uncertain, or what comes next. */
+  ghost?: boolean;
 }
 
 export interface Timeline extends Omit<Headline, 'classes'>, Widget {
