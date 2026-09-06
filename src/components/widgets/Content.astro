@@ -4,6 +4,7 @@ import Button from '~/components/ui/Button.astro';
 import Headline from '~/components/ui/Headline.astro';
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 import Image from '~/components/common/Image.astro';
+import { getColumnsClass } from '~/utils/utils';
 import type { Content as Props } from '~/types';
 
 const {
@@ -24,14 +25,7 @@ const {
   bg = await Astro.slots.render('bg'),
 } = Astro.props;
 
-const columnsClass =
-  columns === 4
-    ? 'lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2'
-    : columns === 3
-      ? 'lg:grid-cols-3 sm:grid-cols-2'
-      : columns === 2
-        ? 'sm:grid-cols-2'
-        : '';
+const columnsClass = getColumnsClass(columns);
 ---
 
 <WidgetWrapper
@@ -105,7 +99,7 @@ const columnsClass =
           )
         }
       </div>
-      <div aria-hidden="true" class="mt-10 md:mt-0 md:basis-1/2">
+      <div class="mt-10 md:mt-0 md:basis-1/2">
         {
           image && (
             <div class="relative m-auto max-w-4xl">
