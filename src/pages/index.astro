@@ -6,6 +6,7 @@ import Note from '~/components/widgets/Note.astro';
 import Features from '~/components/widgets/Features.astro';
 import QuickStart from '~/components/widgets/QuickStart.astro';
 import Features2 from '~/components/widgets/Features2.astro';
+import Timeline from '~/components/widgets/Timeline.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import Content from '~/components/widgets/Content.astro';
 import BlogHighlightedPosts from '~/components/widgets/BlogHighlightedPosts.astro';
@@ -100,9 +101,43 @@ const structuredData = [
     ]}
   />
 
-  <!-- Note Widget ******************* -->
+  <!-- QuickStart Widget ************* -->
 
-  <Note title="Philosophy:" description="Simplicity, Best Practices and High Performance" />
+  <QuickStart
+    id="quick-start"
+    classes={{ icon: 'bg-green-600 dark:bg-green-700' }}
+    tagline="TL;DR"
+    title="One command. That is the whole setup."
+    subtitle="For the people who scroll past the features and ask “how do I run it?”. This is how."
+    commands={['npm create astro@latest -- --template arthelokyo/astrowind']}
+    items={[
+      {
+        title: 'Two minutes, one terminal',
+        description:
+          'Answer the prompts, run <code>npm run dev</code>, open localhost:4321. The demo site is now yours to edit. The only requirement is a current Node.js.',
+        icon: 'tabler:terminal-2',
+      },
+      {
+        title: 'AI-ready out of the box',
+        description:
+          'An <code>AGENTS.md</code> and step-by-step skills tell Claude Code, Cursor or any coding assistant how this template works. Ask it for a page; it knows where things go.',
+        icon: 'tabler:sparkles',
+      },
+      {
+        title: 'Free, MIT licensed, no strings',
+        description:
+          'Use it for client work, side projects or the company site. Star the repo if it saves you an afternoon.',
+        icon: 'tabler:license',
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div
+        class="absolute inset-0 bg-[radial-gradient(60%_55%_at_15%_20%,rgb(129_140_248/0.28),transparent_65%),radial-gradient(50%_50%_at_85%_25%,rgb(244_114_182/0.22),transparent_65%)] dark:bg-[radial-gradient(60%_55%_at_15%_20%,rgb(99_102_241/0.25),transparent_65%),radial-gradient(50%_50%_at_85%_25%,rgb(217_70_239/0.18),transparent_65%)]"
+      >
+      </div>
+    </Fragment>
+  </QuickStart>
 
   <!-- Features Widget *************** -->
 
@@ -150,44 +185,6 @@ const structuredData = [
       },
     ]}
   />
-
-  <!-- QuickStart Widget ************* -->
-
-  <QuickStart
-    id="quick-start"
-    classes={{ icon: 'bg-green-600 dark:bg-green-700' }}
-    tagline="TL;DR"
-    title="One command. That is the whole setup."
-    subtitle="For the people who scroll past the features and ask “how do I run it?”. This is how."
-    commands={['npm create astro@latest -- --template arthelokyo/astrowind']}
-    items={[
-      {
-        title: 'Two minutes, one terminal',
-        description:
-          'Answer the prompts, run <code>npm run dev</code>, open localhost:4321. The demo site is now yours to edit. The only requirement is a current Node.js.',
-        icon: 'tabler:terminal-2',
-      },
-      {
-        title: 'AI-ready out of the box',
-        description:
-          'An <code>AGENTS.md</code> and step-by-step skills tell Claude Code, Cursor or any coding assistant how this template works. Ask it for a page; it knows where things go.',
-        icon: 'tabler:sparkles',
-      },
-      {
-        title: 'Free, MIT licensed, no strings',
-        description:
-          'Use it for client work, side projects or the company site. Star the repo if it saves you an afternoon.',
-        icon: 'tabler:license',
-      },
-    ]}
-  >
-    <Fragment slot="bg">
-      <div
-        class="absolute inset-0 bg-[radial-gradient(60%_55%_at_15%_20%,rgb(129_140_248/0.28),transparent_65%),radial-gradient(50%_50%_at_85%_25%,rgb(244_114_182/0.22),transparent_65%),radial-gradient(70%_60%_at_50%_100%,rgb(56_189_248/0.24),transparent_65%)] dark:bg-[radial-gradient(60%_55%_at_15%_20%,rgb(99_102_241/0.25),transparent_65%),radial-gradient(50%_50%_at_85%_25%,rgb(217_70_239/0.18),transparent_65%),radial-gradient(70%_60%_at_50%_100%,rgb(14_165_233/0.2),transparent_65%)]"
-      >
-      </div>
-    </Fragment>
-  </QuickStart>
 
   <!-- Content Widget **************** -->
 
@@ -253,8 +250,8 @@ const structuredData = [
       },
     ]}
     image={{
-      src: 'https://images.unsplash.com/photo-1600132806370-bf17e65e942f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2194&q=80',
-      alt: 'Blueprint Image',
+      src: 'https://images.unsplash.com/photo-1616674282942-2835e62d612e?auto=format&fit=crop&w=1600&q=80',
+      alt: 'Printed website wireframes on a black table',
     }}
   >
     <Fragment slot="content">Ensure your online presence truly represents you.</Fragment>
@@ -400,6 +397,73 @@ const structuredData = [
     </Fragment>
   </Features2>
 
+  <!-- Timeline Widget **************** -->
+
+  <Timeline
+    id="story"
+    layout="alternate"
+    tagline="Our story"
+    title="One template, since 2022"
+    subtitle="Started before Astro 1.0 shipped, shaped by every Astro release since, and by the people who kept sending pull requests."
+    items={[
+      {
+        date: 'June 2022',
+        title: 'A template for a framework still in beta',
+        description:
+          'AstroWind starts on Astro 1.0 beta with a handful of pages, a few widgets and one idea: a website can be fast, simple and good-looking at the same time.',
+        icon: 'tabler:rocket',
+      },
+      {
+        date: '2022',
+        title: 'The most starred Astro theme, in its first year',
+        description:
+          'By December it is the most starred theme in the Astro ecosystem, a place it would hold year after year. The first pull requests from strangers arrive, and they keep coming.',
+        icon: 'tabler:star-filled',
+      },
+      {
+        date: '2022–2023',
+        title: 'The busiest stretch',
+        description:
+          'Astro grows fast and the template grows with it: collections for content, better images, page transitions. The blog matures, the widgets double, the road to 1.0 begins, and more people than ever send pull requests.',
+        icon: 'tabler:users-group',
+      },
+      {
+        date: '2024',
+        title: 'Polish',
+        description:
+          'Astro 4, and a year of small, careful improvements, most of them sent in by contributors: accessibility, tooling, ways to edit and ways to deploy. Three thousand stars by September.',
+        icon: 'tabler:puzzle',
+      },
+      {
+        date: '2025',
+        title: 'Steady, and quieter',
+        description:
+          'Astro 5 and regular updates. Fewer commits, nothing broken, and the stars kept coming: five thousand by October.',
+        icon: 'tabler:refresh',
+      },
+      {
+        date: '2026',
+        title: 'Astro 7 and Tailwind CSS 4',
+        description:
+          'Two framework majors in one year. The template gets a new generation of widgets, complete landing pages, a blog that finally reads like documentation, and a guide so coding assistants know their way around.',
+        icon: 'tabler:sparkles',
+      },
+      {
+        date: '2026',
+        title: 'Release v1',
+        description:
+          'Four years after the first commit, the demo has no placeholders left: every page, every landing page and every post is real, and the template is ready for whatever comes next.',
+        icon: 'tabler:circle-check-filled',
+        highlight: true,
+      },
+      { icon: 'tabler:dots', ghost: true },
+    ]}
+  />
+
+  <!-- Note Widget ******************* -->
+
+  <Note title="Philosophy:" description="Simplicity, Best Practices and High Performance" />
+
   <!-- HighlightedPosts Widget ******* -->
 
   <BlogHighlightedPosts
@@ -465,7 +529,7 @@ const structuredData = [
     countUp
     stats={[
       { title: 'GitHub stars', amount: '5.9K' },
-      { title: 'Forks', amount: '1.6K' },
+      { title: 'Forks', amount: '1.7K' },
       { title: 'Ready-made widgets', amount: '34' },
       { title: 'Lighthouse score', amount: '100' },
     ]}
