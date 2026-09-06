@@ -14,6 +14,8 @@
 - ✅ Generation of **project sitemap** based on your routes.
 - ✅ **Open Graph tags** for social media sharing.
 - ✅ **Analytics** built-in Google Analytics integration.
+- ✅ **shadcn/ui-compatible design tokens** (`bg-background`, `text-foreground`, `border-border`…) derived from the theme variables.
+- ✅ **AI-ready**: `AGENTS.md` and step-by-step skills in `.agents/skills/` for Claude Code, Codex, Cursor and similar tools.
 
 <br>
 
@@ -74,6 +76,9 @@ Inside **AstroWind** template, you'll see the following folders and files:
 
 ```
 /
+├── .agents/
+│   └── skills/
+├── AGENTS.md
 ├── public/
 │   ├── _headers
 │   └── robots.txt
@@ -82,6 +87,7 @@ Inside **AstroWind** template, you'll see the following folders and files:
 │   │   ├── favicons/
 │   │   ├── images/
 │   │   └── styles/
+│   │       ├── shadcn.css
 │   │       └── tailwind.css
 │   ├── components/
 │   │   ├── blog/
@@ -236,6 +242,7 @@ With Tailwind CSS v4, all configuration is CSS-first. To customize Font families
 
 - `src/components/CustomStyles.astro` — CSS variables for colors and fonts
 - `src/assets/styles/tailwind.css` — Tailwind theme tokens (`@theme`), custom utilities (`@utility`), and plugins
+- `src/assets/styles/shadcn.css` — shadcn/ui-compatible variables (`--background`, `--border`, `--ring`…) derived from the theme, so shadcn-style components pick up your colors
 
 ### Deploy
 

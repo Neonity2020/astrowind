@@ -48,6 +48,22 @@ Custom `intersect` variant for IntersectionObserver animations:
 <div class="intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"></div>
 ```
 
+## shadcn/ui Tokens
+
+`src/assets/styles/shadcn.css` (imported by `tailwind.css`) defines the semantic variables shadcn/ui components expect and maps them to Tailwind utilities:
+
+| shadcn utility                                                                   | Backed by                                       |
+| -------------------------------------------------------------------------------- | ----------------------------------------------- |
+| `bg-background`, `text-foreground`                                               | `--aw-color-bg-page`, `--aw-color-text-default` |
+| `bg-card`, `bg-popover` (+ `-foreground`)                                        | page background / default text                  |
+| `text-muted-foreground`                                                          | `--aw-color-text-muted`                         |
+| `border-border`, `border-input`, `ring-ring`                                     | 15 % mix of text over background / primary      |
+| `bg-destructive`, `text-destructive-foreground`                                  | fixed red / white                               |
+| `text-primary-foreground`, `text-secondary-foreground`, `text-accent-foreground` | white                                           |
+| `bg-chart-1..5`, `bg-sidebar*`                                                   | derived from primary / secondary / accent       |
+
+Differences from a stock shadcn theme (kept on purpose): `bg-primary`, `bg-secondary`, `bg-accent` are AstroWind brand colours (shadcn uses `secondary`/`accent` as subtle surfaces), `text-muted` is a text colour and `bg-muted` is **not** defined as a surface, and the `rounded-*` scale is Tailwind's default (shadcn's `--radius` is defined but not mapped). See `use-shadcn-tokens.md`.
+
 ## Changing Colors
 
 Edit `src/components/CustomStyles.astro`:
