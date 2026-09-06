@@ -58,16 +58,6 @@ const faqs = [
       'The numbers are constraints, not results, and the testimonials are labelled placeholders. Use only real customer quotes and measured results on your own page; invented proof is the fastest way to lose the sale.',
   },
 ];
-
-const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faqs.map(({ title, description }) => ({
-    '@type': 'Question',
-    name: title,
-    acceptedAnswer: { '@type': 'Answer', text: description },
-  })),
-};
 ---
 
 <Layout metadata={metadata}>
@@ -351,6 +341,7 @@ const faqSchema = {
     columns={2}
     classes={{ container: 'max-w-6xl' }}
     items={faqs}
+    schema
   />
 
   <!-- 10. Close: the same ask, one last time -->
@@ -370,6 +361,4 @@ const faqSchema = {
       { text: 'Read the guide', href: getPermalink('landing', 'post') },
     ]}
   />
-
-  <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 </Layout>

@@ -57,16 +57,6 @@ const faqs = [
       'Every block is a widget from src/components/widgets (Hero2, Contact, Features2, Steps, Stats, Content, FAQs, CallToAction). Connect the form in src/components/ui/Form.astro to your email tool, replace the copy and dates, keep the form at the top.',
   },
 ];
-
-const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faqs.map(({ title, description }) => ({
-    '@type': 'Question',
-    name: title,
-    acceptedAnswer: { '@type': 'Answer', text: description },
-  })),
-};
 ---
 
 <Layout metadata={metadata}>
@@ -238,6 +228,7 @@ const faqSchema = {
     columns={2}
     classes={{ container: 'max-w-6xl' }}
     items={faqs}
+    schema
   />
 
   <!-- 8. Close: back to the form -->
@@ -257,6 +248,4 @@ const faqSchema = {
       { text: 'Read the guide', href: getPermalink('landing', 'post') },
     ]}
   />
-
-  <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 </Layout>

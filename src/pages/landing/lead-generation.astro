@@ -57,16 +57,6 @@ const faqs = [
       'The form includes a consent checkbox linked to the privacy policy. Keep the label explicit about what you will send and how often, and store consent with the lead.',
   },
 ];
-
-const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faqs.map(({ title, description }) => ({
-    '@type': 'Question',
-    name: title,
-    acceptedAnswer: { '@type': 'Answer', text: description },
-  })),
-};
 ---
 
 <Layout metadata={metadata}>
@@ -299,6 +289,7 @@ const faqSchema = {
     columns={2}
     classes={{ container: 'max-w-6xl' }}
     items={faqs}
+    schema
   />
 
   <!-- 9. Final CTA: the same action, one more time -->
@@ -318,6 +309,4 @@ const faqSchema = {
       { text: 'Read the guide', href: getPermalink('landing', 'post') },
     ]}
   />
-
-  <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 </Layout>

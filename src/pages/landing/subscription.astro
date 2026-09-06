@@ -57,16 +57,6 @@ const faqs = [
       'Every block is a widget from src/components/widgets (Hero2, Content, Pricing, Features, Steps2, Testimonials, FAQs, CallToAction). Replace the plans in the Pricing widget, point the buttons at your checkout, keep value before price.',
   },
 ];
-
-const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faqs.map(({ title, description }) => ({
-    '@type': 'Question',
-    name: title,
-    acceptedAnswer: { '@type': 'Answer', text: description },
-  })),
-};
 ---
 
 <Layout metadata={metadata}>
@@ -310,6 +300,7 @@ const faqSchema = {
     columns={2}
     classes={{ container: 'max-w-6xl' }}
     items={faqs}
+    schema
   />
 
   <!-- 8. Close -->
@@ -329,6 +320,4 @@ const faqSchema = {
       { text: 'Read the guide', href: getPermalink('landing', 'post') },
     ]}
   />
-
-  <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 </Layout>

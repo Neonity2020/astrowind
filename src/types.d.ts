@@ -204,6 +204,12 @@ export interface Features extends Omit<Headline, 'classes'>, Widget {
 export interface Faqs extends Omit<Headline, 'classes'>, Widget {
   items?: Array<Item>;
   columns?: number;
+  /** Render questions as a native accordion (`<details>`); `false` keeps every answer visible. */
+  collapsible?: boolean;
+  /** Index of the question open by default when collapsible (-1 for none). */
+  defaultOpen?: number;
+  /** Emit FAQPage structured data (JSON-LD) built from the items. */
+  schema?: boolean;
 }
 
 export interface Steps extends Omit<Headline, 'classes'>, Widget {

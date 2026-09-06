@@ -7,11 +7,14 @@ import { getColumnsClass } from '~/utils/utils';
 import type { Faqs as Props } from '~/types';
 
 const {
-  title = '',
-  subtitle = '',
-  tagline = '',
+  title = await Astro.slots.render('title'),
+  subtitle = await Astro.slots.render('subtitle'),
+  tagline = await Astro.slots.render('tagline'),
   items = [],
   columns = 2,
+  collapsible = true,
+  defaultOpen = 0,
+  schema = false,
 
   id,
   isDark = false,
@@ -20,36 +23,87 @@ const {
 } = Astro.props;
 
 const columnsClass = getColumnsClass(columns, 'max-w-4xl');
+
+// One <details name="…"> group per widget instance, so opening a question
+// closes the others of the same FAQ (native exclusive accordion, no JS).
+const groupName = `faq-${id ?? Math.random().toString(36).slice(2, 8)}`;
+
+// Plain-text version of the answers for the FAQPage structured data.
+const stripHtml = (html = '') =>
+  html
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+const faqSchema = schema
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: items
+        .filter(({ title, description }) => title && description)
+        .map(({ title, description }) => ({
+          '@type': 'Question',
+          name: stripHtml(title),
+          acceptedAnswer: { '@type': 'Answer', text: stripHtml(description) },
+        })),
+    }
+  : null;
 ---
 
 <WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-7xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
-  <Headline title={title} subtitle={subtitle} tagline={tagline} />
+  <Headline title={title} subtitle={subtitle} tagline={tagline} classes={classes?.headline as Record<string, string>} />
 
   {
     items.length > 0 && (
-      <div class:list={['grid mx-auto gap-y-8 md:gap-y-12 gap-8', columnsClass]}>
-        {items.map(({ title: itemTitle, description, icon, callToAction }) => (
-          <div class="intersect-once motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
-            <div class="flex flex-row max-w-none">
-              <div class="flex justify-center">
+      <div class:list={['grid mx-auto gap-y-6 md:gap-y-8 gap-8', columnsClass]}>
+        {items.map(({ title: itemTitle, description, icon, callToAction }, index) =>
+          collapsible ? (
+            <details
+              class="group intersect-once motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+              name={groupName}
+              open={index === defaultOpen}
+            >
+              <summary class="flex cursor-pointer list-none items-start gap-2 rounded-md py-1 outline-offset-4 [&::-webkit-details-marker]:hidden">
                 <Icon
                   name={icon || 'tabler:chevron-right'}
-                  class="flex-shrink-0 mt-1 w-6 h-6 text-primary mr-2 rtl:mr-0 rtl:ml-2"
+                  class="mt-1 h-6 w-6 shrink-0 text-primary transition-transform duration-200 group-open:rotate-90 rtl:rotate-180 rtl:group-open:rotate-90"
                 />
-              </div>
-              <div class="mt-0.5">
-                {itemTitle && <h3 class="text-xl font-bold">{itemTitle}</h3>}
-                {description && <p class:list={[{ 'mt-3': itemTitle }, 'text-muted']} set:html={description} />}
+                {itemTitle && <h3 class="text-xl font-bold text-heading">{itemTitle}</h3>}
+              </summary>
+              <div class="pl-8 rtl:pl-0 rtl:pr-8 pt-2">
+                {description && <p class="text-muted" set:html={description} />}
                 {callToAction && (
-                  <div class:list={[{ 'mt-3': itemTitle || description }]}>
+                  <div class="mt-3">
                     <Button variant="link" {...callToAction} />
                   </div>
                 )}
               </div>
+            </details>
+          ) : (
+            <div class="intersect-once motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
+              <div class="flex flex-row max-w-none">
+                <div class="flex justify-center">
+                  <Icon
+                    name={icon || 'tabler:chevron-right'}
+                    class="flex-shrink-0 mt-1 w-6 h-6 text-primary mr-2 rtl:mr-0 rtl:ml-2"
+                  />
+                </div>
+                <div class="mt-0.5">
+                  {itemTitle && <h3 class="text-xl font-bold">{itemTitle}</h3>}
+                  {description && <p class:list={[{ 'mt-3': itemTitle }, 'text-muted']} set:html={description} />}
+                  {callToAction && (
+                    <div class:list={[{ 'mt-3': itemTitle || description }]}>
+                      <Button variant="link" {...callToAction} />
+                    </div>
+                  )}
+                </div>
+              </div>
             </div>
-          </div>
-        ))}
+          )
+        )}
       </div>
     )
   }
+
+  {faqSchema && <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
 </WidgetWrapper>

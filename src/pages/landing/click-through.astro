@@ -59,16 +59,6 @@ const faqs = [
       'Change the destination constant at the top of src/pages/landing/click-through.astro, replace the copy in each widget and keep the order. Every block is a widget from src/components/widgets; no custom code is involved.',
   },
 ];
-
-const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faqs.map(({ title, description }) => ({
-    '@type': 'Question',
-    name: title,
-    acceptedAnswer: { '@type': 'Answer', text: description },
-  })),
-};
 ---
 
 <Layout metadata={metadata}>
@@ -315,6 +305,7 @@ const faqSchema = {
     columns={2}
     classes={{ container: 'max-w-6xl' }}
     items={faqs}
+    schema
   />
 
   <!-- 9. Close: the destination, one more time -->
@@ -334,6 +325,4 @@ const faqSchema = {
       { text: 'Read the guide', href: getPermalink('landing', 'post') },
     ]}
   />
-
-  <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 </Layout>
