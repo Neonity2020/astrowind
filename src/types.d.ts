@@ -260,3 +260,70 @@ export interface Content extends Omit<Headline, 'classes'>, Widget {
 }
 
 export interface Contact extends Omit<Headline, 'classes'>, Form, Widget {}
+
+export interface ComparisonColumn {
+  title: string;
+  subtitle?: string;
+  /** Highlighted column (the recommended plan, or "us" in versus mode). */
+  highlight?: boolean;
+  callToAction?: CallToAction;
+}
+
+export interface ComparisonRow {
+  label: string;
+  description?: string;
+  /** One value per column: `true`/`false` render as check/cross, strings as text. */
+  values: Array<boolean | string | undefined>;
+  /** Rows with the same group are listed under a group heading. */
+  group?: string;
+}
+
+export interface Comparison extends Omit<Headline, 'classes'>, Widget {
+  columns?: Array<ComparisonColumn>;
+  rows?: Array<ComparisonRow>;
+  /** `features`: plan matrix. `versus`: your product against alternatives. */
+  mode?: 'features' | 'versus';
+  firstColumnLabel?: string;
+}
+
+export interface FeatureTab extends Item {
+  image?: Image;
+}
+
+export interface FeatureTabs extends Omit<Headline, 'classes'>, Widget {
+  items?: Array<FeatureTab>;
+  /** `vertical`: tabs beside the image. `horizontal`: tabs above it. */
+  orientation?: 'vertical' | 'horizontal';
+  isReversed?: boolean;
+}
+
+export interface BentoItem extends Item {
+  /** Columns the card spans (1–3). */
+  span?: 1 | 2 | 3;
+  rowSpan?: 1 | 2;
+}
+
+export interface Bento extends Omit<Headline, 'classes'>, Widget {
+  items?: Array<BentoItem>;
+  columns?: 3 | 4;
+}
+
+export interface Newsletter extends Omit<Headline, 'classes'>, Widget {
+  placeholder?: string;
+  button?: string;
+  disclaimer?: string;
+  /** Where to POST the email. Without it the form does nothing (see configure-contact-form.md). */
+  action?: string;
+  method?: 'post' | 'get';
+  name?: string;
+  layout?: 'band' | 'card';
+}
+
+export interface Quote extends Widget {
+  quote?: string;
+  name?: string;
+  job?: string;
+  image?: string | Image;
+  logo?: string | Image;
+  rating?: number;
+}

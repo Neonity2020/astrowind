@@ -10,6 +10,7 @@ import Steps2 from '~/components/widgets/Steps2.astro';
 import Testimonials from '~/components/widgets/Testimonials.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import Newsletter from '~/components/widgets/Newsletter.astro';
 
 import { getPermalink } from '~/utils/permalinks';
 
@@ -303,7 +304,19 @@ const faqs = [
     schema
   />
 
-  <!-- 8. Close -->
+  <!-- 8. Newsletter: the low-commitment alternative to subscribing today -->
+
+  <Newsletter
+    id="newsletter"
+    tagline="Not ready yet?"
+    title="Get the retention checklist by email"
+    subtitle="One email with the six practices above as a checklist. No sequence, no follow-ups; the plans will still be here."
+    placeholder="you@company.com"
+    button="Send it"
+    disclaimer="One email, then nothing unless you subscribe. This form is a template: pass an <code>action</code> to connect it to your email tool."
+  />
+
+  <!-- 9. Close -->
 
   <CallToAction
     id="get-template"

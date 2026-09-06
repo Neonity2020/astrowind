@@ -4,12 +4,12 @@ import Layout from '~/layouts/LandingLayout.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import Note from '~/components/widgets/Note.astro';
 import Content from '~/components/widgets/Content.astro';
-import Features from '~/components/widgets/Features.astro';
 import Steps2 from '~/components/widgets/Steps2.astro';
 import Stats from '~/components/widgets/Stats.astro';
 import Testimonials from '~/components/widgets/Testimonials.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import FeatureTabs from '~/components/widgets/FeatureTabs.astro';
 
 import { getPermalink } from '~/utils/permalinks';
 
@@ -121,45 +121,51 @@ const faqs = [
 
   <!-- 3. Key features: the second depth -->
 
-  <Features
+  <FeatureTabs
     id="features"
     tagline="Key features"
     title="What it does, in the buyer’s terms"
-    subtitle="Six features, each described by the outcome it produces. The full list lives in the specifications below."
-    columns={3}
+    subtitle="Pick a feature to see it. Each tab is described by the outcome it produces; the full list lives in the specifications below."
     items={[
-      {
-        title: 'Astro + Tailwind CSS, current versions',
-        description:
-          'Static output, no framework lock-in, utility-first styling. Fast by default and simple to change.',
-        icon: 'tabler:brand-tailwind',
-      },
       {
         title: '22 ready-made widgets',
         description:
-          'Hero, features, steps, pricing, testimonials, FAQ, stats, contact and more. Every page on this site is built from them.',
+          'Hero, features, steps, pricing, testimonials, FAQ, stats, contact and more. Every page on this site, including this one, is built from them.',
         icon: 'tabler:components',
+        image: {
+          src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+          alt: 'A team composing pages from ready-made sections',
+        },
       },
       {
         title: 'Blog with MDX, categories, tags and RSS',
-        description: 'Write in Markdown, embed components when you need them, get feeds and taxonomy pages for free.',
-        icon: 'tabler:article',
-      },
-      {
-        title: 'Dark mode and RTL support',
-        description: 'Light and dark themes from CSS variables; right-to-left layouts supported across widgets.',
-        icon: 'tabler:moon',
-      },
-      {
-        title: 'SEO and image optimisation built in',
         description:
-          'Metadata, Open Graph images, sitemap, robots and responsive optimised images with no extra setup.',
-        icon: 'tabler:seo',
+          'Write in Markdown, embed components when you need them, and get feeds and taxonomy pages generated at build time.',
+        icon: 'tabler:article',
+        image: {
+          src: 'https://images.unsplash.com/photo-1600132806370-bf17e65e942f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2194&q=80',
+          alt: 'Blueprint drawings, a stand-in for the blog structure',
+        },
+      },
+      {
+        title: 'Dark mode, RTL, SEO and optimised images',
+        description:
+          'Light and dark themes from CSS variables, right-to-left layouts, metadata and Open Graph images, sitemap and responsive images with no extra setup.',
+        icon: 'tabler:moon',
+        image: {
+          src: 'https://images.unsplash.com/photo-1531973486364-5fa64260d75b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1674&q=80',
+          alt: 'A developer working on a website at a laptop',
+        },
       },
       {
         title: 'Ready for AI coding assistants',
-        description: 'AGENTS.md and step-by-step skills so Claude Code, Codex or Cursor can extend the site reliably.',
+        description:
+          'AGENTS.md and step-by-step skills so Claude Code, Codex or Cursor can extend the site reliably, plus shadcn/ui-compatible design tokens.',
         icon: 'tabler:robot',
+        image: {
+          src: 'https://images.unsplash.com/photo-1552664688-cf412ec27db2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1674&q=80',
+          alt: 'A team planning work on a whiteboard',
+        },
       },
     ]}
   />

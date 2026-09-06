@@ -7,10 +7,10 @@ import Content from '~/components/widgets/Content.astro';
 import Features from '~/components/widgets/Features.astro';
 import Steps2 from '~/components/widgets/Steps2.astro';
 import Stats from '~/components/widgets/Stats.astro';
-import Testimonials from '~/components/widgets/Testimonials.astro';
 import Pricing from '~/components/widgets/Pricing.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import Quote from '~/components/widgets/Quote.astro';
 
 import { getPermalink } from '~/utils/permalinks';
 
@@ -237,41 +237,16 @@ const faqs = [
     ]}
   />
 
-  <Testimonials
+  <Quote
     id="proof"
-    tagline="Proof"
-    title="Where the evidence goes"
-    subtitle="Placeholders on purpose. Put real quotes here, with a measurable before and after, and link to the full case study when you have one."
-    testimonials={[
-      {
-        testimonial:
-          'A quote that repeats the promise from the hero in the customer’s own words, with the result they got.',
-        name: 'Customer name',
-        job: 'Role, company (sample testimonial)',
-        image: {
-          src: 'https://images.unsplash.com/photo-1618835962148-cf177563c6c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=930&q=80',
-          alt: 'Portrait placeholder for a customer testimonial',
-        },
-      },
-      {
-        testimonial: 'A quote from someone who hesitated for the reason your FAQ answers, and what changed their mind.',
-        name: 'Customer name',
-        job: 'Role, company (sample testimonial)',
-        image: {
-          src: 'https://images.unsplash.com/photo-1453738773917-9c3eff1db985?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1320&q=80',
-          alt: 'Portrait placeholder for a customer testimonial',
-        },
-      },
-      {
-        testimonial: 'A short, specific one. “Cut our onboarding from 3 weeks to 4 days” beats three adjectives.',
-        name: 'Customer name',
-        job: 'Role, company (sample testimonial)',
-        image: {
-          src: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1320&q=80',
-          alt: 'Portrait placeholder for a customer testimonial',
-        },
-      },
-    ]}
+    quote="One sentence that names the problem the customer had before and the measurable result after. This is a sample: replace it with a real customer’s words, with permission."
+    name="Customer name"
+    job="Role, company (sample testimonial)"
+    rating={5}
+    image={{
+      src: 'https://images.unsplash.com/photo-1618835962148-cf177563c6c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=930&q=80',
+      alt: 'Portrait placeholder for a customer testimonial',
+    }}
   />
 
   <!-- 7. The offer: price after value, one highlighted choice -->

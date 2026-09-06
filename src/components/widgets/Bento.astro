@@ -1,0 +1,89 @@
+---
+import { Icon } from 'astro-icon/components';
+import Image from '~/components/common/Image.astro';
+import Button from '~/components/ui/Button.astro';
+import Headline from '~/components/ui/Headline.astro';
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import type { Bento as Props } from '~/types';
+
+// Asymmetric card grid ("bento"): items declare how many columns/rows they
+// span; the grid packs them densely. Cards can carry an icon, an image (shown
+// at the bottom, cropped) and a link.
+
+const {
+  title = await Astro.slots.render('title'),
+  subtitle = await Astro.slots.render('subtitle'),
+  tagline = await Astro.slots.render('tagline'),
+  items = [],
+  columns = 3,
+
+  id,
+  isDark = false,
+  classes = {},
+  bg = await Astro.slots.render('bg'),
+} = Astro.props;
+
+const gridClass = columns === 4 ? 'md:grid-cols-2 lg:grid-cols-4' : 'md:grid-cols-2 lg:grid-cols-3';
+const spanClass = (span?: number, rowSpan?: number) =>
+  [span === 2 ? 'md:col-span-2' : span === 3 ? 'md:col-span-2 lg:col-span-3' : '', rowSpan === 2 ? 'lg:row-span-2' : '']
+    .filter(Boolean)
+    .join(' ');
+---
+
+<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-7xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
+  <Headline title={title} subtitle={subtitle} tagline={tagline} classes={classes?.headline as Record<string, string>} />
+
+  {
+    items.length > 0 && (
+      <div class:list={['grid grid-cols-1 gap-4 md:gap-6 [grid-auto-flow:dense]', gridClass]}>
+        {items.map(({ title: itemTitle, description, icon, image, span, rowSpan, callToAction, href }) => {
+          const Card = href ? 'a' : 'div';
+          return (
+            <Card
+              href={href}
+              class:list={[
+                'group relative flex flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white dark:border-slate-700 dark:bg-slate-900 shadow-sm intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade',
+                href ? 'transition hover:-translate-y-0.5 hover:shadow-lg hover:border-primary/40' : '',
+                spanClass(span, rowSpan),
+              ]}
+            >
+              <div class="flex flex-1 flex-col p-6">
+                {icon && (
+                  <span class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                    <Icon name={icon} class="h-6 w-6" />
+                  </span>
+                )}
+                {itemTitle && <h3 class="text-xl font-bold text-heading">{itemTitle}</h3>}
+                {description && <p class="mt-2 text-muted text-pretty" set:html={description} />}
+                {callToAction && !href && (
+                  <div class="mt-4">
+                    <Button variant="link" {...callToAction} />
+                  </div>
+                )}
+              </div>
+              {image && (
+                <div class="mt-auto max-h-56 overflow-hidden px-6">
+                  {typeof image === 'string' ? (
+                    <Fragment set:html={image} />
+                  ) : (
+                    <Image
+                      class="w-full rounded-t-lg border border-b-0 border-gray-200 dark:border-slate-700 transition group-hover:scale-[1.02]"
+                      widths={[400, 768]}
+                      sizes="(max-width: 767px) 100vw, 600px"
+                      width={600}
+                      height={360}
+                      layout="constrained"
+                      format="webp"
+                      alt={itemTitle ?? ''}
+                      {...image}
+                    />
+                  )}
+                </div>
+              )}
+            </Card>
+          );
+        })}
+      </div>
+    )
+  }
+</WidgetWrapper>

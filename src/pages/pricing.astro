@@ -2,6 +2,7 @@
 import Layout from '~/layouts/PageLayout.astro';
 import HeroText from '~/components/widgets/HeroText.astro';
 import Prices from '~/components/widgets/Pricing.astro';
+import Comparison from '~/components/widgets/Comparison.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import Features3 from '~/components/widgets/Features3.astro';
@@ -108,6 +109,43 @@ const metadata = {
           href: '#',
         },
       },
+    ]}
+  />
+
+  <!-- Comparison Widget ************ -->
+
+  <Comparison
+    id="compare"
+    tagline="Compare plans"
+    title="Everything in each plan"
+    subtitle="The full feature matrix. Highlighted column: the plan most teams pick."
+    firstColumnLabel="Features"
+    columns={[
+      { title: 'Basic', subtitle: '$29 / month', callToAction: { text: 'Get started', href: '/contact' } },
+      {
+        title: 'Standard',
+        subtitle: '$69 / month',
+        highlight: true,
+        callToAction: { text: 'Get started', href: '/contact' },
+      },
+      { title: 'Premium', subtitle: '$199 / month', callToAction: { text: 'Talk to us', href: '/contact' } },
+    ]}
+    rows={[
+      { group: 'Core', label: 'Pages', values: ['Unlimited', 'Unlimited', 'Unlimited'] },
+      { group: 'Core', label: 'Projects', values: ['1', '5', 'Unlimited'] },
+      { group: 'Core', label: 'Team members', values: ['1', '5', '25'] },
+      { group: 'Core', label: 'Custom domain', values: [true, true, true] },
+      { group: 'Support', label: 'Email support', values: [true, true, true] },
+      {
+        group: 'Support',
+        label: 'Priority support',
+        description: 'Response within one business day',
+        values: [false, true, true],
+      },
+      { group: 'Support', label: 'Dedicated manager', values: [false, false, true] },
+      { group: 'Extras', label: 'Analytics dashboard', values: [false, true, true] },
+      { group: 'Extras', label: 'Single sign-on (SSO)', values: [false, false, true] },
+      { group: 'Extras', label: 'Audit log', values: [false, false, '90 days'] },
     ]}
   />
 
