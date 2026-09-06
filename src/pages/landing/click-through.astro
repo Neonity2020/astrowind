@@ -10,6 +10,7 @@ import Comparison from '~/components/widgets/Comparison.astro';
 import Testimonials from '~/components/widgets/Testimonials.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import StickyCTA from '~/components/widgets/StickyCTA.astro';
 
 import { getPermalink } from '~/utils/permalinks';
 
@@ -333,4 +334,7 @@ const faqs = [
       { text: 'Read the guide', href: getPermalink('landing', 'post') },
     ]}
   />
+  <!-- On phones the hero button is long gone; the bar brings the click back once the reader scrolls -->
+
+  <StickyCTA text="Get the template" href={destination} target="_blank" label="One destination, three placements" />
 </Layout>

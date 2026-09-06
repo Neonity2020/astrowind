@@ -4,6 +4,7 @@ import Layout from '~/layouts/PageLayout.astro';
 import Header from '~/components/widgets/Header.astro';
 
 import Hero2 from '~/components/widgets/Hero2.astro';
+import SocialProof from '~/components/widgets/SocialProof.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import Features3 from '~/components/widgets/Features3.astro';
 import Content from '~/components/widgets/Content.astro';
@@ -79,6 +80,24 @@ const metadata = {
       </Button>
     </div>
   </Hero2>
+
+  <!-- SocialProof Widget *********** -->
+
+  <SocialProof
+    id="ratings"
+    items={[
+      { value: '4.8', label: 'on the App Store', icon: 'tabler:brand-apple', rating: 4.8, href: appStoreDownloadLink },
+      {
+        value: '4.7',
+        label: 'on Google Play',
+        icon: 'tabler:brand-google-play',
+        rating: 4.7,
+        href: googlePlayDownloadLink,
+      },
+      { value: '1M+', label: 'downloads', icon: 'tabler:download' },
+      { value: '#1', label: 'Product of the Day', icon: 'tabler:brand-producthunt' },
+    ]}
+  />
 
   <!-- Features3 Widget ************** -->
 

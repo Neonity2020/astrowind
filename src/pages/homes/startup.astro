@@ -10,6 +10,7 @@ import Stats from '~/components/widgets/Stats.astro';
 import Features3 from '~/components/widgets/Features3.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import Brands from '~/components/widgets/Brands.astro';
+import Video from '~/components/widgets/Video.astro';
 
 import { YouTube } from '@astro-community/astro-embed-youtube';
 
@@ -130,6 +131,22 @@ const metadata = {
         alt: 'Yahoo',
       },
     ]}
+  />
+
+  <!-- Video Widget ***************** -->
+
+  <Video
+    id="video"
+    tagline="In action"
+    title="See the template in two minutes"
+    subtitle="Only the poster loads with the page; the player is embedded when you press play."
+    youtube="dsTXcSeAZq8"
+    videoTitle="AstroWind template overview"
+    poster={{
+      src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80',
+      alt: 'People working on laptops around a table',
+    }}
+    caption="A sample video; replace the YouTube id with your own."
   />
 
   <!-- Features2 Widget ************** -->

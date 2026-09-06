@@ -1,0 +1,67 @@
+---
+import { Icon } from 'astro-icon/components';
+import Image from '~/components/common/Image.astro';
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import type { SocialProof as Props } from '~/types';
+
+// A compact strip of trust signals: store ratings, review-site scores,
+// user counts, certifications. Each item is a value, a label and an icon
+// or small logo, optionally linked and with a star rating.
+
+const { items = [], id, isDark = false, classes = {}, bg = await Astro.slots.render('bg') } = Astro.props;
+---
+
+<WidgetWrapper
+  id={id}
+  isDark={isDark}
+  containerClass={`max-w-6xl mx-auto !py-6 md:!py-8 ${classes?.container ?? ''}`}
+  bg={bg}
+>
+  <ul
+    class="flex flex-wrap items-stretch justify-center gap-y-4 divide-x divide-gray-200 dark:divide-slate-700 list-none"
+  >
+    {
+      items.map(({ label, value, icon, image, href, rating }) => {
+        const Item = href ? 'a' : 'div';
+        return (
+          <li class="flex px-6 md:px-10">
+            <Item
+              href={href}
+              target={href ? '_blank' : undefined}
+              rel={href ? 'noopener noreferrer' : undefined}
+              class:list={['flex items-center gap-3', href ? 'group' : '']}
+            >
+              {image ? (
+                typeof image === 'string' ? (
+                  <Fragment set:html={image} />
+                ) : (
+                  <Image
+                    class="h-8 w-8 object-contain"
+                    width={32}
+                    height={32}
+                    layout="fixed"
+                    format="webp"
+                    {...image}
+                  />
+                )
+              ) : (
+                icon && <Icon name={icon} class="h-8 w-8 shrink-0 text-primary" />
+              )}
+              <span class="text-left">
+                <span class="block text-lg font-bold leading-tight text-heading group-hover:text-primary">{value}</span>
+                {rating && (
+                  <span class="flex gap-0.5 text-amber-400" aria-label={`${rating} out of 5 stars`}>
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Icon name={i < Math.round(rating) ? 'tabler:star-filled' : 'tabler:star'} class="h-3.5 w-3.5" />
+                    ))}
+                  </span>
+                )}
+                {label && <span class="block text-sm text-muted">{label}</span>}
+              </span>
+            </Item>
+          </li>
+        );
+      })
+    }
+  </ul>
+</WidgetWrapper>

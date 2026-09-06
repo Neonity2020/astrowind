@@ -392,3 +392,58 @@ export interface Countdown extends Omit<Headline, 'classes'>, Widget {
   expiredText?: string;
   callToAction?: CallToAction;
 }
+
+export interface SocialProofItem {
+  /** The headline figure: "4.9/5", "12,000+", "#1". */
+  value: string;
+  label?: string;
+  icon?: string;
+  image?: string | Image;
+  href?: string;
+  /** 1–5, rendered as stars under the value. */
+  rating?: number;
+}
+
+export interface SocialProof extends Widget {
+  items?: Array<SocialProofItem>;
+}
+
+export interface Video extends Omit<Headline, 'classes'>, Widget {
+  /** A self-hosted video file. Ignored when `youtube` or `vimeo` is set. */
+  src?: string;
+  /** YouTube video id. */
+  youtube?: string;
+  /** Vimeo video id. */
+  vimeo?: string;
+  poster?: string | Image;
+  caption?: string;
+  /** Accessible name of the player. */
+  videoTitle?: string;
+}
+
+export interface StickyCTA {
+  id?: string;
+  text: string;
+  href: string;
+  /** Short line shown next to the button. */
+  label?: string;
+  target?: string;
+  icon?: string;
+  /** Pixels scrolled before the bar slides in. */
+  showAfter?: number;
+  /** Hide on md screens and up (default true). */
+  mobileOnly?: boolean;
+}
+
+export interface Integration {
+  name: string;
+  description?: string;
+  icon?: string;
+  image?: string | Image;
+  href?: string;
+}
+
+export interface Integrations extends Omit<Headline, 'classes'>, Widget {
+  items?: Array<Integration>;
+  columns?: number;
+}

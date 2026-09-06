@@ -2,6 +2,7 @@
 import Layout from '~/layouts/LandingLayout.astro';
 
 import Hero2 from '~/components/widgets/Hero2.astro';
+import SocialProof from '~/components/widgets/SocialProof.astro';
 import Note from '~/components/widgets/Note.astro';
 import Content from '~/components/widgets/Content.astro';
 import Pricing from '~/components/widgets/Pricing.astro';
@@ -75,6 +76,18 @@ const faqs = [
       src: 'https://images.unsplash.com/photo-1593510987046-1f8fcfc512a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
       alt: 'Ironic image associated with canceling a subscription. Subscription Landing Page Demo',
     }}
+  />
+
+  <!-- Trust strip: the numbers a subscription page can state before the price -->
+
+  <SocialProof
+    id="trust"
+    items={[
+      { value: '4.9/5', label: 'average rating (sample)', icon: 'tabler:star-filled', rating: 5 },
+      { value: '12,000+', label: 'active subscribers (sample)', icon: 'tabler:users' },
+      { value: 'Cancel anytime', label: 'one click, no call', icon: 'tabler:lock-open' },
+      { value: 'MIT', label: 'licensed template', icon: 'tabler:license' },
+    ]}
   />
 
   <Note

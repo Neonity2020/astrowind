@@ -4,6 +4,7 @@ import Layout from '~/layouts/PageLayout.astro';
 import Header from '~/components/widgets/Header.astro';
 import Hero2 from '~/components/widgets/Hero2.astro';
 import Bento from '~/components/widgets/Bento.astro';
+import Integrations from '~/components/widgets/Integrations.astro';
 import Steps2 from '~/components/widgets/Steps2.astro';
 import Content from '~/components/widgets/Content.astro';
 import Pricing from '~/components/widgets/Pricing.astro';
@@ -119,6 +120,40 @@ const metadata = {
           src: 'https://images.unsplash.com/photo-1516321497487-e288fb19713f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80',
           alt: 'A tidy desk with a laptop and notebook',
         },
+      },
+    ]}
+  />
+
+  <!-- Integrations Widget ********** -->
+
+  <Integrations
+    id="integrations"
+    tagline="Works with your stack"
+    title="Built on tools you already use"
+    subtitle="No lock-in: standard Astro, standard Tailwind, deploy anywhere static files are served."
+    items={[
+      { name: 'Astro', description: 'Framework, v7', icon: 'tabler:brand-astro', href: 'https://astro.build' },
+      {
+        name: 'Tailwind CSS',
+        description: 'Styling, v4',
+        icon: 'tabler:brand-tailwind',
+        href: 'https://tailwindcss.com',
+      },
+      { name: 'TypeScript', description: 'Typed props and content', icon: 'tabler:brand-typescript' },
+      { name: 'Markdown & MDX', description: 'Blog content', icon: 'tabler:markdown' },
+      { name: 'Vercel', description: 'One-click deploy', icon: 'tabler:brand-vercel', href: 'https://vercel.com' },
+      {
+        name: 'Cloudflare',
+        description: 'Pages and Workers',
+        icon: 'tabler:brand-cloudflare',
+        href: 'https://pages.cloudflare.com',
+      },
+      { name: 'Docker', description: 'Dockerfile included', icon: 'tabler:brand-docker' },
+      {
+        name: 'GitHub',
+        description: 'Source and discussions',
+        icon: 'tabler:brand-github',
+        href: 'https://github.com/arthelokyo/astrowind',
       },
     ]}
   />
