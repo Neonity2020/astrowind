@@ -47,7 +47,7 @@ The slug is derived from the filename and the URL follows `apps.blog.post.permal
 
 - `<title>` with the site template, meta description from `excerpt`, canonical URL, Open Graph and Twitter tags with the cover image, `article:published_time` / `article:modified_time` / `article:section` / `article:tag`.
 - `BlogPosting` and `BreadcrumbList` JSON-LD, a breadcrumb trail, reading time, related posts.
-- A place in the blog list, the category and tag pages, the RSS feed and the sitemap. To keep a post out of search results and the sitemap (a demo or an internal note), add `metadata: { robots: { index: false } }`.
+- A place in the blog list, the category and tag pages, the RSS feed and the sitemap. To keep a post out of search results (a demo or an internal note), add `metadata: { robots: { index: false } }`; the sitemap still lists every page and search engines honour the robots meta tag.
 
 ## Notes
 

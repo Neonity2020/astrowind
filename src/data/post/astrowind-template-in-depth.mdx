@@ -64,6 +64,6 @@ Tailwind CSS 4 is configured in CSS, not JavaScript: `src/assets/styles/tailwind
 
 ## The build: what Astro emits
 
-`npm run build` runs Astro's static build. The sitemap integration writes `sitemap-index.xml`, leaving out the taxonomy pages marked `noindex` and any post that opts out; `rss.xml.ts` writes the feed from the same post list the blog uses; the HTML, CSS and JavaScript are minified; the integration updates `robots.txt`. The result in `dist/` is plain files, with no server component and no environment variables required.
+`npm run build` runs Astro's static build. The sitemap integration writes `sitemap-index.xml` with every page (search engines decide what to index from each page's robots meta tag); `rss.xml.ts` writes the feed from the same post list the blog uses; the HTML, CSS and JavaScript are minified; the integration updates `robots.txt`. The result in `dist/` is plain files, with no server component and no environment variables required.
 
 If you want to change how any of this works, the places to look are `vendor/integration/` for configuration, `src/utils/` for permalinks, posts and images, and `src/layouts/Layout.astro` for what every page loads. Everything else is a widget, and an [AI coding assistant](/build-websites-with-ai) that has read `AGENTS.md` knows this map too.

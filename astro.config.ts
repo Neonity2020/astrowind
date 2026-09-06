@@ -1,5 +1,4 @@
 import path from 'path';
-import fs from 'fs';
 import { fileURLToPath } from 'url';
 
 import { defineConfig, fontProviders } from 'astro/config';
@@ -15,43 +14,10 @@ import compress from 'astro-compress';
 import type { AstroIntegration } from 'astro';
 
 import astrowind from './vendor/integration';
-import loadConfig from './vendor/integration/utils/loadConfig';
 
 import { readingTimeRemarkPlugin, responsiveTablesRehypePlugin } from './src/utils/frontmatter';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
-// Blog taxonomy sections marked `robots.index: false` in `src/config.yaml` are
-// kept out of the sitemap. Listing a URL that we then ask crawlers not to index
-// spends crawl budget on nothing and sends two contradictory signals at once.
-// The prefixes are derived from the config instead of hardcoded because these
-// pathnames are meant to be renamed (see the comments in `src/config.yaml`).
-interface BlogSectionConfig {
-  isEnabled?: boolean;
-  pathname?: string;
-  robots?: { index?: boolean };
-}
-
-const themeConfig = (await loadConfig('src/config.yaml')) as {
-  apps?: { blog?: Record<string, BlogSectionConfig> };
-};
-
-const noindexTaxonomyPaths = ['category', 'tag']
-  .map((section) => themeConfig?.apps?.blog?.[section])
-  .filter((section): section is BlogSectionConfig => Boolean(section?.isEnabled) && section?.robots?.index === false)
-  .map((section) => `/${(section.pathname ?? '').replace(/^\/+|\/+$/g, '')}/`);
-
-// Posts whose front matter sets `metadata.robots.index: false` stay out of the sitemap.
-// (The sitemap integration cannot read page metadata, so the front matter is scanned here.)
-const noindexPostSlugs = fs
-  .readdirSync(path.resolve(__dirname, 'src/data/post'))
-  .filter((file) => /\.mdx?$/.test(file))
-  .filter((file) => {
-    const source = fs.readFileSync(path.resolve(__dirname, 'src/data/post', file), 'utf8');
-    const frontmatter = source.match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
-    return /^\s*index:\s*false\s*$/m.test(frontmatter);
-  })
-  .map((file) => file.replace(/\.mdx?$/, '').toLowerCase());
 
 const hasExternalScripts = false;
 const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroIntegration)[] = []) =>
@@ -83,15 +49,7 @@ export default defineConfig({
   ],
 
   integrations: [
-    sitemap({
-      filter: (page) => {
-        const pathname = new URL(page).pathname.replace(/\/+$/, '');
-        return (
-          !noindexTaxonomyPaths.some((prefix) => `${pathname}/`.startsWith(prefix)) &&
-          !noindexPostSlugs.some((slug) => pathname.endsWith(`/${slug}`))
-        );
-      },
-    }),
+    sitemap(),
     mdx(),
     icon({
       // Local SVG icons (used as <Icon name="file-name" />) live next to the other assets.
