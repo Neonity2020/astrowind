@@ -71,6 +71,15 @@ export interface MetaDataOpenGraph {
   images?: Array<MetaDataImage>;
   locale?: string;
   type?: string;
+  /** Open Graph `article:*` properties, used when `type` is `article`. */
+  article?: {
+    publishedTime?: string;
+    modifiedTime?: string;
+    expirationTime?: string;
+    authors?: Array<string>;
+    section?: string;
+    tags?: Array<string>;
+  };
 }
 
 export interface MetaDataTwitter {

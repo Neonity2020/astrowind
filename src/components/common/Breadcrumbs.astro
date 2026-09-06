@@ -1,0 +1,48 @@
+---
+import { Icon } from 'astro-icon/components';
+import { getCanonical } from '~/utils/permalinks';
+
+// Breadcrumb trail with matching BreadcrumbList structured data. The last
+// item is the current page and is rendered without a link.
+
+export interface Props {
+  items: Array<{ text: string; href?: string }>;
+  class?: string;
+}
+
+const { items, class: className = '' } = Astro.props;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: items.map(({ text, href }, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: text,
+    ...(href ? { item: String(getCanonical(href)) } : {}),
+  })),
+};
+---
+
+<nav aria-label="Breadcrumb" class:list={['text-sm text-muted', className]}>
+  <ol class="flex flex-wrap items-center gap-1 list-none">
+    {
+      items.map(({ text, href }, index) => (
+        <li class="flex items-center gap-1">
+          {index > 0 && <Icon name="tabler:chevron-right" class="h-3.5 w-3.5 shrink-0 opacity-60 rtl:rotate-180" />}
+          {href && index < items.length - 1 ? (
+            <a href={href} class="hover:text-primary hover:underline">
+              {text}
+            </a>
+          ) : (
+            <span aria-current="page" class="text-default">
+              {text}
+            </span>
+          )}
+        </li>
+      ))
+    }
+  </ol>
+</nav>
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
