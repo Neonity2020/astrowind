@@ -2,8 +2,8 @@
 publishDate: 2026-08-10T00:00:00Z
 title: 'Customize Your Astro Template: Colors, Fonts, Logo'
 excerpt: Customize the AstroWind Astro template to your brand. Light and dark colors, fonts, logo, favicons, header and footer, and tokens for your own components.
-image: https://images.unsplash.com/photo-1581079289196-67865ea83118?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80
-imageAlt: A color fan deck with paper swatches
+image: https://images.unsplash.com/photo-1709803056954-aff96d0faf1c?auto=format&fit=crop&w=2070&q=80
+imageAlt: Steps painted in different colors against a blue sky
 category: Documentation
 tags:
   - astro
@@ -40,7 +40,7 @@ Customizing the AstroWind template to your brand is a handful of files, and none
 .dark {
   --aw-color-primary: rgb(1 97 239);
   /* … */
-  --aw-color-bg-page: rgb(3 6 32);
+  --aw-color-bg-page: rgb(8 9 10);
 }
 ```
 
