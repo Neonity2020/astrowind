@@ -194,12 +194,19 @@ export interface Form {
 }
 
 // WIDGETS
+export interface HeroImage extends Image {
+  /** `cover` (default) crops the picture to the hero's frame; `auto` shows it whole at its natural proportions, for illustrations with a transparent background. */
+  aspect?: 'cover' | 'auto';
+  /** Any other attribute is forwarded to the <img>. */
+  [attribute: string]: unknown;
+}
+
 export interface Hero extends Omit<Headline, 'classes'>, Omit<Widget, 'isDark' | 'classes'> {
   /** Small pill above the tagline, e.g. "New" or "Beta". */
   badge?: string;
   content?: string;
   actions?: string | CallToAction[];
-  image?: string | unknown;
+  image?: string | HeroImage;
 }
 
 export interface Stats extends Omit<Headline, 'classes'>, Widget {
@@ -260,9 +267,16 @@ export interface Steps extends Omit<Headline, 'classes'>, Widget {
   isReversed?: boolean;
 }
 
+export interface ContentImage extends Image {
+  /** Crop of the picture: `1/1` (default), `4/3`, `3/4` for portraits, or `auto` to keep the natural height without cropping. */
+  aspect?: '4/3' | '1/1' | '3/4' | 'auto';
+  /** Any other attribute is forwarded to the <img> (e.g. `loading`, `fetchpriority`). */
+  [attribute: string]: unknown;
+}
+
 export interface Content extends Omit<Headline, 'classes'>, Widget {
   content?: string;
-  image?: string | unknown;
+  image?: string | ContentImage;
   items?: Array<Item>;
   columns?: number;
   isReversed?: boolean;
@@ -396,6 +410,25 @@ export interface Projects extends Omit<Headline, 'classes'>, Widget {
   callToAction?: CallToAction;
 }
 
+export interface QuickStartCommand {
+  command: string;
+  /** Shown above the command as a `# comment`. */
+  comment?: string;
+}
+
+export interface QuickStart extends Omit<Headline, 'classes'>, Widget {
+  /** One or more shell commands, rendered in a terminal-like block with a copy button. */
+  commands?: Array<string | QuickStartCommand>;
+  /** Prompt character shown before each command (`$` by default). */
+  prompt?: string;
+  copyLabel?: string;
+  copiedLabel?: string;
+  /** Two or three facts to read before running the command. */
+  items?: Array<Item>;
+  actions?: Array<CallToAction>;
+  note?: string;
+}
+
 export interface Countdown extends Omit<Headline, 'classes'>, Widget {
   /** Target date/time in ISO 8601, e.g. "2026-10-15T09:00:00Z". */
   date?: string;
@@ -413,10 +446,14 @@ export interface SocialProofItem {
   href?: string;
   /** 1–5, rendered as stars under the value. */
   rating?: number;
+  /** Tailwind colour class for the icon, e.g. `text-amber-500` (defaults to the primary colour). */
+  color?: string;
 }
 
 export interface SocialProof extends Widget {
   items?: Array<SocialProofItem>;
+  /** `strip`: a row of figures with dividers (default). `badges`: small rounded chips. */
+  layout?: 'strip' | 'badges';
 }
 
 export interface Video extends Omit<Headline, 'classes'>, Widget {

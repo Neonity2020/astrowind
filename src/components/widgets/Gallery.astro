@@ -33,7 +33,7 @@ const columnsClass =
   <aw-gallery>
     <ul class:list={['grid grid-cols-1 gap-4 md:gap-6 list-none', columnsClass]}>
       {
-        images.map(({ src, alt, caption }, index) => (
+        images.map(({ src, alt, caption, href }, index) => (
           <li class="intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
             <figure>
               <button
@@ -55,7 +55,18 @@ const columnsClass =
                   alt={alt || ''}
                 />
               </button>
-              {caption && <figcaption class="mt-2 text-sm text-muted">{caption}</figcaption>}
+              {caption && (
+                <figcaption class="mt-2 text-sm text-muted">
+                  {href ? (
+                    <a href={href} class="inline-flex items-center gap-1 hover:text-primary hover:underline">
+                      {caption}
+                      <Icon name="tabler:arrow-up-right" class="h-3.5 w-3.5" />
+                    </a>
+                  ) : (
+                    caption
+                  )}
+                </figcaption>
+              )}
             </figure>
           </li>
         ))

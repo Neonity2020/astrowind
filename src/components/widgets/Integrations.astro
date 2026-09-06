@@ -22,7 +22,8 @@ const {
   bg = await Astro.slots.render('bg'),
 } = Astro.props;
 
-const columnsClass = getColumnsClass(columns, 'sm:grid-cols-2');
+const columnsClass =
+  columns === 5 ? 'sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5' : getColumnsClass(columns, 'sm:grid-cols-2');
 ---
 
 <WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-6xl mx-auto ${classes?.container ?? ''}`} bg={bg}>

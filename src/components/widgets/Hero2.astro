@@ -17,6 +17,11 @@ const {
   id,
   bg = await Astro.slots.render('bg'),
 } = Astro.props;
+
+// `image.aspect: 'auto'` shows the picture whole (transparent illustrations);
+// the default crops it to the hero frame.
+const { aspect: imageAspect, ...imageProps } = typeof image === 'object' && image ? image : { src: '', alt: '' };
+const imageWhole = imageAspect === 'auto';
 ---
 
 <section class="relative md:-mt-[76px] not-prose" {...id ? { id } : {}}>
@@ -88,15 +93,17 @@ const {
                 <Fragment set:html={image} />
               ) : (
                 <Image
-                  class="mx-auto rounded-md w-full"
+                  class:list={[
+                    'mx-auto',
+                    imageWhole ? 'w-auto max-h-[32rem] object-contain md:max-h-[44rem]' : 'rounded-md w-full',
+                  ]}
                   widths={[400, 768, 1024, 2040]}
                   sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
                   loading="eager"
                   fetchpriority="high"
-                  width={600}
-                  height={600}
+                  {...(imageWhole ? { inferSize: true, layout: 'none' } : { width: 600, height: 600 })}
                   format="webp"
-                  {...image}
+                  {...imageProps}
                 />
               )}
             </div>

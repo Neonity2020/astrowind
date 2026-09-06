@@ -8,7 +8,16 @@ import type { SocialProof as Props } from '~/types';
 // user counts, certifications. Each item is a value, a label and an icon
 // or small logo, optionally linked and with a star rating.
 
-const { items = [], id, isDark = false, classes = {}, bg = await Astro.slots.render('bg') } = Astro.props;
+const {
+  items = [],
+  layout = 'strip',
+  id,
+  isDark = false,
+  classes = {},
+  bg = await Astro.slots.render('bg'),
+} = Astro.props;
+
+const badges = layout === 'badges';
 ---
 
 <WidgetWrapper
@@ -18,18 +27,32 @@ const { items = [], id, isDark = false, classes = {}, bg = await Astro.slots.ren
   bg={bg}
 >
   <ul
-    class="flex flex-wrap items-stretch justify-center gap-y-4 divide-x divide-gray-200 dark:divide-slate-700 list-none"
+    class:list={[
+      'list-none',
+      badges
+        ? 'flex flex-wrap justify-center gap-3'
+        : [
+            'grid gap-x-4 gap-y-5 md:flex md:flex-wrap md:items-stretch md:justify-center md:gap-y-4 md:divide-x md:divide-gray-200 dark:md:divide-slate-700',
+            items.length % 2 ? 'mx-auto w-fit grid-cols-1 justify-items-start md:w-auto' : 'grid-cols-2',
+          ],
+    ]}
   >
     {
-      items.map(({ label, value, icon, image, href, rating }) => {
+      items.map(({ label, value, icon, image, href, rating, color }) => {
         const Item = href ? 'a' : 'div';
         return (
-          <li class="flex px-6 md:px-10">
+          <li class:list={badges ? '' : 'flex justify-center md:px-8 lg:px-12'}>
             <Item
               href={href}
               target={href ? '_blank' : undefined}
               rel={href ? 'noopener noreferrer' : undefined}
-              class:list={['flex items-center gap-3', href ? 'group' : '']}
+              class:list={[
+                'flex items-center',
+                badges
+                  ? 'gap-2 rounded-full border border-gray-200 bg-white px-4 py-2 text-sm shadow-sm dark:border-slate-700 dark:bg-slate-900'
+                  : 'gap-3',
+                href ? 'group' : '',
+              ]}
             >
               {image ? (
                 typeof image === 'string' ? (
@@ -45,10 +68,22 @@ const { items = [], id, isDark = false, classes = {}, bg = await Astro.slots.ren
                   />
                 )
               ) : (
-                icon && <Icon name={icon} class="h-8 w-8 shrink-0 text-primary" />
+                icon && (
+                  <Icon
+                    name={icon}
+                    class:list={['shrink-0', color || 'text-primary', badges ? 'h-5 w-5' : 'h-8 w-8']}
+                  />
+                )
               )}
-              <span class="text-left">
-                <span class="block text-lg font-bold leading-tight text-heading group-hover:text-primary">{value}</span>
+              <span class:list={badges ? 'flex items-baseline gap-1.5' : 'text-left'}>
+                <span
+                  class:list={[
+                    'font-bold leading-tight text-heading group-hover:text-primary',
+                    badges ? 'text-sm' : 'block text-lg',
+                  ]}
+                >
+                  {value}
+                </span>
                 {rating && (
                   <span class="flex gap-0.5 text-amber-400" aria-label={`${rating} out of 5 stars`}>
                     {Array.from({ length: 5 }).map((_, i) => (
@@ -56,7 +91,7 @@ const { items = [], id, isDark = false, classes = {}, bg = await Astro.slots.ren
                     ))}
                   </span>
                 )}
-                {label && <span class="block text-sm text-muted">{label}</span>}
+                {label && <span class:list={['text-sm text-muted', badges ? '' : 'block']}>{label}</span>}
               </span>
             </Item>
           </li>
