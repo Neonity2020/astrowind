@@ -20,7 +20,7 @@ Before implementing a project-specific task (disabling the blog, Open Graph imag
 | `npm run check`   | Run astro check + ESLint + Prettier |
 | `npm run fix`     | Auto-fix ESLint + Prettier issues   |
 
-**Node.js requirement:** >= 22.12.0
+**Node.js requirement:** >= 22.22.3
 
 ## Architecture
 
@@ -32,7 +32,7 @@ src/
   components/
     common/        # Shared: Image, Metadata, Analytics, ToggleTheme
     ui/            # Primitives: Button, Form, Headline, Timeline, WidgetWrapper
-    widgets/       # Page sections: Hero, Features, Pricing, Header, Footer
+    widgets/       # Page sections: Hero, Features, Bento, Pricing, Comparison, FAQs, Team, Gallery…
     blog/          # Blog: SinglePost, List, Pagination, Tags
     CustomStyles.astro  # CSS variables for colors and fonts
   content.config.ts    # Content Collections schema (Astro 5+ location)

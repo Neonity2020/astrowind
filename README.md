@@ -8,6 +8,7 @@
 **AstroWind** is a free and open-source template to make your website using **[Astro v7](https://astro.build/) + [Tailwind CSS v4](https://tailwindcss.com/)**. Ready to start a new project and designed taking into account web best practices.
 
 - ✅ **Production-ready** scores in **PageSpeed Insights** reports.
+- ✅ **30+ page-section widgets** (heroes, features, bento, tabs, pricing with comparison table, FAQ accordion, testimonials, team, timeline, gallery, projects, countdown, newsletter…) typed and composable.
 - ✅ Integration with **Tailwind CSS v4** supporting **Dark mode** and **_RTL_**.
 - ✅ **Fast and SEO friendly blog** with automatic **RSS feed**, **MDX** support, **Categories & Tags**, **Social Share**, ...
 - ✅ **Image Optimization** (using new **Astro Assets** and **Unpic** for Universal image CDN).
@@ -285,6 +286,9 @@ Yes, in maintenance mode: v1 receives dependency updates and bug fixes, while ne
 
 **How do I disable the blog, change the Open Graph image, deploy under a sub-path, connect a CMS, deploy to Cloudflare…?**
 Ask your AI coding assistant. AstroWind is _AI-ready_: the repository ships an [`AGENTS.md`](./AGENTS.md) with the project conventions and step-by-step skills in [`.agents/skills/`](./.agents/skills/) for the most common tasks, so Claude Code, Codex/ChatGPT, Cursor, Copilot and similar tools can do them reliably (and you can read the skills yourself).
+
+**Which widgets are there and how do I use them?**
+Every section is a component in `src/components/widgets/` with typed props. The catalogue with props and where each one is demoed is in [`.agents/skills/use-widgets.md`](./.agents/skills/use-widgets.md); the six pages in `src/pages/landing/` show them combined into complete landing pages.
 
 **Where do blog posts go?**
 `src/data/post/` as `.md` or `.mdx` files. They are read at build time.
