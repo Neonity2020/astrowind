@@ -1,7 +1,7 @@
 ---
 import Layout from '~/layouts/LandingLayout.astro';
 
-import Hero2 from '~/components/widgets/Hero2.astro';
+import Hero from '~/components/widgets/Hero.astro';
 import Note from '~/components/widgets/Note.astro';
 import Features from '~/components/widgets/Features.astro';
 import Content from '~/components/widgets/Content.astro';
@@ -72,26 +72,19 @@ const faqSchema = {
 <Layout metadata={metadata}>
   <!-- 1. Hero: one promise, one action, no distractions -->
 
-  <Hero2
-    tagline="Lead Generation Landing Page"
+  <Hero
+    tagline="Lead Generation Landing Demo"
+    title="Effective Lead Generation Landing Page: Unlock the Secrets"
+    subtitle="Discover the secrets to creating a Landing Page that turns curious visitors into eager leads. (Your Hero should grab attention instantly. Use a powerful headline that speaks directly to your target audience.)"
     actions={[
-      { variant: 'primary', text: 'Get the checklist', href: '#lead-form', icon: 'tabler:download' },
-      { text: 'See how it works', href: '#anatomy' },
+      { variant: 'primary', text: 'Call to Action', href: '#lead-form', icon: 'tabler:square-rounded-arrow-right' },
+      { text: 'Learn more', href: '#anatomy' },
     ]}
     image={{
       src: 'https://images.unsplash.com/photo-1597423498219-04418210827d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1674&q=80',
-      alt: 'A magnet attracting metal screws, a metaphor for a landing page attracting leads',
+      alt: 'Magnet attracting screws. Lead generation landing page demo',
     }}
-  >
-    <Fragment slot="title">
-      Turn visitors into leads with a page that has <span class="text-accent dark:text-white">one job</span>
-    </Fragment>
-
-    <Fragment slot="subtitle">
-      This is a real lead generation landing page and a guide to building one. Scroll through it: each section does its
-      job and tells you why it is there. Leave your email at the end and get the section-by-section checklist.
-    </Fragment>
-  </Hero2>
+  />
 
   <Note
     title="Why it works:"

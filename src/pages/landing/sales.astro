@@ -1,7 +1,7 @@
 ---
 import Layout from '~/layouts/LandingLayout.astro';
 
-import Hero from '~/components/widgets/Hero.astro';
+import Hero2 from '~/components/widgets/Hero2.astro';
 import Note from '~/components/widgets/Note.astro';
 import Content from '~/components/widgets/Content.astro';
 import Features from '~/components/widgets/Features.astro';
@@ -73,26 +73,19 @@ const faqSchema = {
 <Layout metadata={metadata}>
   <!-- 1. Hero: the big promise and the first ask -->
 
-  <Hero
-    tagline="Long-form Sales Landing Page"
+  <Hero2
+    tagline="Long-form Sales Demo"
+    title="Long-form Sales: Sell with a Story: The Long-form Way!"
+    subtitle="Dive deep into crafting a Landing Page that narrates, persuades, and converts."
     actions={[
-      { variant: 'primary', text: 'Get the template', href: '#offer', icon: 'tabler:arrow-down' },
-      { text: 'Read how it sells', href: '#problem' },
+      { variant: 'primary', text: 'Call to Action', href: '#offer', icon: 'tabler:square-rounded-arrow-right' },
+      { text: 'Learn more', href: '#problem' },
     ]}
     image={{
-      src: 'https://images.unsplash.com/photo-1616198814651-e71f960c3180?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80',
-      alt: 'A wall clock, a reminder that a sales page has to earn every minute of attention',
+      src: 'https://images.unsplash.com/photo-1621452773781-0f992fd1f5cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1626&q=80',
+      alt: 'Children telling a story. Long-form Sales Landing Page demo',
     }}
-  >
-    <Fragment slot="title">
-      The page that sells for you while <span class="text-accent dark:text-white">you sleep</span>
-    </Fragment>
-
-    <Fragment slot="subtitle">
-      A long-form sales page walks a visitor from a problem they feel to a purchase they are sure about, without a call.
-      This page is one, about itself: read it to see the argument unfold, then copy the structure for your product.
-    </Fragment>
-  </Hero>
+  />
 
   <Note
     title="Why it works:"
