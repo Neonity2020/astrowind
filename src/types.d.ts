@@ -1,5 +1,6 @@
 import type { AstroComponentFactory } from 'astro/runtime/server/index.js';
-import type { HTMLAttributes, ImageMetadata } from 'astro/types';
+import type { ImageMetadata } from 'astro';
+import type { HTMLAttributes } from 'astro/types';
 
 export interface Post {
   /** Unique ID identifying the post. */
@@ -95,20 +96,6 @@ export interface Headline {
   classes?: Record<string, string>;
 }
 
-interface TeamMember {
-  name?: string;
-  job?: string;
-  image?: Image;
-  socials?: Array<Social>;
-  description?: string;
-  classes?: Record<string, string>;
-}
-
-interface Social {
-  icon?: string;
-  href?: string;
-}
-
 export interface Stat {
   amount?: number | string;
   title?: string;
@@ -145,7 +132,7 @@ export interface Testimonial {
 }
 
 export interface Input {
-  type: HTMLInputTypeAttribute;
+  type: astroHTML.JSX.HTMLInputTypeAttribute;
   name: string;
   label?: string;
   autocomplete?: string;
@@ -172,14 +159,6 @@ export interface CallToAction extends Omit<HTMLAttributes<'a'>, 'slot'> {
   type?: 'button' | 'submit' | 'reset';
 }
 
-export interface Collapse {
-  iconUp?: string;
-  iconDown?: string;
-  items?: Array<Item>;
-  columns?: number;
-  classes?: Record<string, string>;
-}
-
 export interface Form {
   inputs?: Array<Input>;
   textarea?: Textarea;
@@ -193,10 +172,6 @@ export interface Hero extends Omit<Headline, 'classes'>, Omit<Widget, 'isDark' |
   content?: string;
   actions?: string | CallToAction[];
   image?: string | unknown;
-}
-
-export interface Team extends Omit<Headline, 'classes'>, Widget {
-  team?: Array<TeamMember>;
 }
 
 export interface Stats extends Omit<Headline, 'classes'>, Widget {
