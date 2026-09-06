@@ -1,6 +1,6 @@
 # Add Structured Data (JSON-LD)
 
-The template does not generate Schema.org markup out of the box (`src/components/common/Metadata.astro` handles title, description, canonical, robots, Open Graph and Twitter through `astro-seo`). Add JSON-LD manually.
+Out of the box the template emits `BlogPosting` and `BreadcrumbList` on every blog post (`src/pages/[...blog]/index.astro`, `src/components/common/Breadcrumbs.astro`) and `FAQPage` from the `FAQs` widget when it receives `schema`. `src/components/common/Metadata.astro` handles title, description, canonical, robots, Open Graph (including `article:*`) and Twitter through `astro-seo`. Anything else (Organization, Product, HowTo…) is added as described below.
 
 ## Site-wide (Organization / WebSite)
 
@@ -36,11 +36,22 @@ const { schema } = Astro.props;
 <script type="application/ld+json" set:html={JSON.stringify(schema)} />
 ```
 
-`Layout.astro` has no `<head>` slot; either add one (`<slot name="head" />` inside `<head>`) and pass the component through `PageLayout`, or place the `<script>` in the page body — JSON-LD is valid anywhere in the document.
+Pages can put it in the head through the `head` slot that `Layout.astro` and `PageLayout.astro` expose:
+
+```astro
+<Layout metadata={metadata}>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  </Fragment>
+  …
+</Layout>
+```
+
+JSON-LD is also valid anywhere in the body if a slot is not available (widgets like `FAQs` do that).
 
 ## Blog posts (Article)
 
-In `src/pages/[...blog]/index.astro` you already have `post` and `url`:
+Already done: `src/pages/[...blog]/index.astro` builds this object from the front matter (`publishDate`, `updateDate`, `author`, `category`, `tags`, `image`). Extend it there if you need more properties:
 
 ```ts
 const articleSchema = {

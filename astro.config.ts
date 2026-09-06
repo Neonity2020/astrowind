@@ -1,4 +1,5 @@
 import path from 'path';
+import fs from 'fs';
 import { fileURLToPath } from 'url';
 
 import { defineConfig, fontProviders } from 'astro/config';
@@ -40,6 +41,18 @@ const noindexTaxonomyPaths = ['category', 'tag']
   .filter((section): section is BlogSectionConfig => Boolean(section?.isEnabled) && section?.robots?.index === false)
   .map((section) => `/${(section.pathname ?? '').replace(/^\/+|\/+$/g, '')}/`);
 
+// Posts whose front matter sets `metadata.robots.index: false` stay out of the sitemap.
+// (The sitemap integration cannot read page metadata, so the front matter is scanned here.)
+const noindexPostSlugs = fs
+  .readdirSync(path.resolve(__dirname, 'src/data/post'))
+  .filter((file) => /\.mdx?$/.test(file))
+  .filter((file) => {
+    const source = fs.readFileSync(path.resolve(__dirname, 'src/data/post', file), 'utf8');
+    const frontmatter = source.match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
+    return /^\s*index:\s*false\s*$/m.test(frontmatter);
+  })
+  .map((file) => file.replace(/\.mdx?$/, '').toLowerCase());
+
 const hasExternalScripts = false;
 const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroIntegration)[] = []) =>
   hasExternalScripts ? (Array.isArray(items) ? items.map((item) => item()) : [items()]) : [];
@@ -71,7 +84,13 @@ export default defineConfig({
 
   integrations: [
     sitemap({
-      filter: (page) => !noindexTaxonomyPaths.some((prefix) => new URL(page).pathname.startsWith(prefix)),
+      filter: (page) => {
+        const pathname = new URL(page).pathname.replace(/\/+$/, '');
+        return (
+          !noindexTaxonomyPaths.some((prefix) => `${pathname}/`.startsWith(prefix)) &&
+          !noindexPostSlugs.some((slug) => pathname.endsWith(`/${slug}`))
+        );
+      },
     }),
     mdx(),
     icon({
@@ -132,7 +151,8 @@ export default defineConfig({
     // `domains` only matters for remote URLs that fall through to Astro's
     // native <Image /> (i.e. providers Unpic can't detect, like Pixabay).
     // Listed entries are authorized to be processed by Sharp.
-    domains: ['cdn.pixabay.com'],
+    // Unsplash is listed so post covers can be rendered as real 1200×626 Open Graph images.
+    domains: ['cdn.pixabay.com', 'images.unsplash.com'],
 
     // Emit responsive styles for the native <Image layout=…> used by
     // src/components/common/Image.astro (local images). Utility classes on

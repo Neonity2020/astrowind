@@ -2,14 +2,14 @@
 
 The six pages in `src/pages/landing/` are worked examples of the six common landing page types. Copy the closest one rather than starting from a blank file.
 
-| Type            | File                    | Job of the page                               | Sections that matter most                                     |
-| --------------- | ----------------------- | --------------------------------------------- | ------------------------------------------------------------- |
-| Lead generation | `lead-generation.astro` | Get an email in exchange for something        | offer, proof, short form, FAQ                                 |
-| Sales           | `sales.astro`           | Sell one product on one page                  | promise, features, proof, price, guarantee                    |
-| Click-through   | `click-through.astro`   | Warm up before a signup or checkout elsewhere | message match, benefit, one repeated button                   |
-| Product details | `product.astro`         | Show one product in depth                     | overview, features, specs, gallery, price                     |
-| Pre-launch      | `pre-launch.astro`      | Build a waitlist before launch                | form first, countdown, roadmap, teaser                        |
-| Subscription    | `subscription.astro`    | Sell recurring value                          | trust strip, plans with monthly/yearly, retention, newsletter |
+| Type            | File                    | Job of the page                               | Sections that matter most                                |
+| --------------- | ----------------------- | --------------------------------------------- | -------------------------------------------------------- |
+| Lead generation | `lead-generation.astro` | Get an email in exchange for something        | offer, proof, short form, FAQ                            |
+| Sales           | `sales.astro`           | Sell one product on one page                  | promise, features, proof, price, guarantee               |
+| Click-through   | `click-through.astro`   | Warm up before a signup or checkout elsewhere | message match, benefit, one repeated button              |
+| Product details | `product.astro`         | Show one product in depth                     | overview, features, specs, gallery, price                |
+| Pre-launch      | `pre-launch.astro`      | Build a waitlist before launch                | form first, countdown, roadmap, teaser                   |
+| Subscription    | `subscription.astro`    | Sell recurring value                          | trust strip, plan cards, retention practices, newsletter |
 
 ## Steps
 
