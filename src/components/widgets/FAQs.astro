@@ -3,6 +3,7 @@ import { Icon } from 'astro-icon/components';
 import Button from '~/components/ui/Button.astro';
 import Headline from '~/components/ui/Headline.astro';
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import { getColumnsClass } from '~/utils/utils';
 import type { Faqs as Props } from '~/types';
 
 const {
@@ -18,14 +19,7 @@ const {
   bg = await Astro.slots.render('bg'),
 } = Astro.props;
 
-const columnsClass =
-  columns === 4
-    ? 'lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2'
-    : columns === 3
-      ? 'lg:grid-cols-3 sm:grid-cols-2'
-      : columns === 2
-        ? 'sm:grid-cols-2'
-        : 'max-w-4xl';
+const columnsClass = getColumnsClass(columns, 'max-w-4xl');
 ---
 
 <WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-7xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
