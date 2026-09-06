@@ -327,3 +327,68 @@ export interface Quote extends Widget {
   logo?: string | Image;
   rating?: number;
 }
+
+export interface TeamMember {
+  name: string;
+  role?: string;
+  image?: string | Image;
+  bio?: string;
+  socials?: Array<{ icon: string; href: string; ariaLabel?: string }>;
+}
+
+export interface Team extends Omit<Headline, 'classes'>, Widget {
+  members?: Array<TeamMember>;
+  columns?: number;
+}
+
+export interface TimelineItem {
+  date?: string;
+  title?: string;
+  description?: string;
+  icon?: string;
+  image?: string | Image;
+  /** Filled marker for the current or most important entry. */
+  highlight?: boolean;
+}
+
+export interface Timeline extends Omit<Headline, 'classes'>, Widget {
+  items?: Array<TimelineItem>;
+  /** `vertical`: single column. `alternate`: entries alternate around a centre line on large screens. */
+  layout?: 'vertical' | 'alternate';
+}
+
+export interface GalleryImage extends Image {
+  caption?: string;
+}
+
+export interface Gallery extends Omit<Headline, 'classes'>, Widget {
+  images?: Array<GalleryImage>;
+  columns?: 2 | 3 | 4;
+  /** Open images in a native <dialog> viewer. */
+  lightbox?: boolean;
+}
+
+export interface Project {
+  title?: string;
+  description?: string;
+  image?: string | Image;
+  tags?: Array<string>;
+  href?: string;
+  linkText?: string;
+  /** A measurable outcome shown with a trend icon, e.g. "+38 % conversions". */
+  result?: string;
+}
+
+export interface Projects extends Omit<Headline, 'classes'>, Widget {
+  items?: Array<Project>;
+  columns?: number;
+  callToAction?: CallToAction;
+}
+
+export interface Countdown extends Omit<Headline, 'classes'>, Widget {
+  /** Target date/time in ISO 8601, e.g. "2026-10-15T09:00:00Z". */
+  date?: string;
+  labels?: { days: string; hours: string; minutes: string; seconds: string };
+  expiredText?: string;
+  callToAction?: CallToAction;
+}

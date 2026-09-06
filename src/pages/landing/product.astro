@@ -10,6 +10,7 @@ import Testimonials from '~/components/widgets/Testimonials.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import FeatureTabs from '~/components/widgets/FeatureTabs.astro';
+import Gallery from '~/components/widgets/Gallery.astro';
 
 import { getPermalink } from '~/utils/permalinks';
 
@@ -218,7 +219,48 @@ const faqs = [
     </Fragment>
   </Content>
 
-  <!-- 5. Getting started: what happens after the decision -->
+  <!-- 5. Gallery: let them look at it from every angle -->
+
+  <Gallery
+    id="gallery"
+    tagline="Gallery"
+    title="Show it from every angle"
+    subtitle="Buyers zoom in. Six to eight real images, each with a caption that says what they are looking at, answer more questions than a paragraph. Click any image to open it."
+    images={[
+      {
+        src: 'https://images.unsplash.com/photo-1600132806370-bf17e65e942f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
+        alt: 'Blueprint drawings on a desk',
+        caption: 'Specifications, laid out',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
+        alt: 'Laptops on a table during a meeting',
+        caption: 'The team working with the template',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1516321497487-e288fb19713f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
+        alt: 'A tidy desk with a laptop and notebook',
+        caption: 'Everyday setup',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1552664688-cf412ec27db2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
+        alt: 'A team planning on a whiteboard',
+        caption: 'Planning a release',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
+        alt: 'Sticky notes on a glass wall',
+        caption: 'Roadmap session',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1512361436605-a484bdb34b5f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
+        alt: 'A designer working at a desk',
+        caption: 'Design in progress',
+      },
+    ]}
+  />
+
+  <!-- 6. Getting started: what happens after the decision -->
 
   <Steps2
     id="getting-started"
@@ -317,8 +359,6 @@ const faqs = [
     tagline="FAQ"
     title="Questions buyers ask about a product page"
     subtitle="Answered here so nobody has to write in. The same answers feed a FAQ rich result in search."
-    columns={2}
-    classes={{ container: 'max-w-6xl' }}
     items={faqs}
     schema
   />

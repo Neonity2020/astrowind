@@ -4,6 +4,8 @@ import Features3 from '~/components/widgets/Features3.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import Stats from '~/components/widgets/Stats.astro';
 import Steps2 from '~/components/widgets/Steps2.astro';
+import Team from '~/components/widgets/Team.astro';
+import Timeline from '~/components/widgets/Timeline.astro';
 import Layout from '~/layouts/PageLayout.astro';
 
 const metadata = {
@@ -149,33 +151,95 @@ const metadata = {
     ]}
   />
 
-  <!-- Steps2 Widget ****************** -->
+  <!-- Timeline Widget **************** -->
 
-  <Steps2
+  <Timeline
+    id="history"
+    tagline="Our story"
     title="Achievements"
     subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, quam nec venenatis lobortis, mi risus tempus nulla, sed porttitor est nibh at nulla."
-    isReversed={true}
-    callToAction={{
-      text: 'See more',
-      href: '/',
-    }}
+    layout="alternate"
     items={[
       {
-        title: 'Global reach',
+        date: '2019',
+        title: 'The first template',
         description: 'Nam malesuada urna in enim imperdiet tincidunt. Phasellus non tincidunt nisi, at elementum mi.',
+        icon: 'tabler:rocket',
+      },
+      {
+        date: '2021',
+        title: 'Global reach',
+        description:
+          'Cras semper nulla leo, eget laoreet erat cursus sed. Praesent faucibus massa in purus iaculis dictum.',
         icon: 'tabler:globe',
       },
       {
+        date: '2023',
         title: 'Positive customer feedback and reviews',
         description:
-          'Cras semper nulla leo, eget laoreet erat cursus sed. Praesent faucibus massa in purus iaculis dictum.',
+          'Phasellus lacinia cursus velit, eu malesuada magna pretium eu. Etiam aliquet tellus purus, blandit lobortis ex rhoncus vitae.',
         icon: 'tabler:message-star',
       },
       {
+        date: '2026',
         title: 'Awards and recognition as industry experts',
-        description:
-          'Phasellus lacinia cursus velit, eu malesuada magna pretium eu. Etiam aliquet tellus purus, blandit lobortis ex rhoncus vitae.',
+        description: 'Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci.',
         icon: 'tabler:award',
+        highlight: true,
+      },
+    ]}
+  />
+
+  <!-- Team Widget ******************** -->
+
+  <Team
+    id="team"
+    tagline="The people"
+    title="Meet the team"
+    subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, quam nec venenatis lobortis, mi risus tempus nulla."
+    members={[
+      {
+        name: 'Alicia Rivera',
+        role: 'Founder & CEO',
+        image: {
+          src: 'https://images.unsplash.com/photo-1618835962148-cf177563c6c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=930&q=80',
+          alt: 'Alicia Rivera',
+        },
+        bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        socials: [
+          { icon: 'tabler:brand-linkedin', href: 'https://www.linkedin.com/', ariaLabel: 'LinkedIn' },
+          { icon: 'tabler:brand-x', href: 'https://x.com/', ariaLabel: 'X' },
+        ],
+      },
+      {
+        name: 'Daniel Okafor',
+        role: 'Lead developer',
+        image: {
+          src: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
+          alt: 'Daniel Okafor',
+        },
+        bio: 'Morbi sagittis, quam nec venenatis lobortis, mi risus tempus nulla.',
+        socials: [{ icon: 'tabler:brand-github', href: 'https://github.com/', ariaLabel: 'GitHub' }],
+      },
+      {
+        name: 'Mei Tanaka',
+        role: 'Product designer',
+        image: {
+          src: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
+          alt: 'Mei Tanaka',
+        },
+        bio: 'Sed porttitor est nibh at nulla. Cras semper nulla leo, eget laoreet erat.',
+        socials: [{ icon: 'tabler:brand-dribbble', href: 'https://dribbble.com/', ariaLabel: 'Dribbble' }],
+      },
+      {
+        name: 'Jonas Weber',
+        role: 'Customer success',
+        image: {
+          src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
+          alt: 'Jonas Weber',
+        },
+        bio: 'Praesent faucibus massa in purus iaculis dictum.',
+        socials: [{ icon: 'tabler:brand-linkedin', href: 'https://www.linkedin.com/', ariaLabel: 'LinkedIn' }],
       },
     ]}
   />
