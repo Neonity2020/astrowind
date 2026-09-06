@@ -4,25 +4,57 @@ import Layout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import Note from '~/components/widgets/Note.astro';
 import Features from '~/components/widgets/Features.astro';
+import QuickStart from '~/components/widgets/QuickStart.astro';
 import Features2 from '~/components/widgets/Features2.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import Content from '~/components/widgets/Content.astro';
-import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
+import BlogHighlightedPosts from '~/components/widgets/BlogHighlightedPosts.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import SocialProof from '~/components/widgets/SocialProof.astro';
+import StructuredData from '~/components/common/StructuredData.astro';
+import { SITE, METADATA, I18N } from 'astrowind:config';
+import favIconSvg from '~/assets/favicons/favicon.svg';
 
 const metadata = {
   title: 'AstroWind — Free template for creating websites with Astro + Tailwind CSS',
   ignoreTitleTemplate: true,
 };
+
+// Structured data for the site and its publisher, built only from
+// `src/config.yaml` (`site.name`, `site.site`, `metadata.twitter.handle`), so
+// it is correct for any site made with the template. Blog posts add
+// BlogPosting on their own; the FAQs widget adds FAQPage.
+const organizationId = `${SITE?.site}/#organization`;
+const structuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': `${SITE?.site}/#website`,
+    name: SITE?.name,
+    url: SITE?.site,
+    inLanguage: I18N?.language,
+    publisher: { '@id': organizationId },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    '@id': organizationId,
+    name: SITE?.name,
+    url: SITE?.site,
+    logo: new URL(favIconSvg.src, SITE?.site).toString(),
+    ...(METADATA?.twitter?.handle ? { sameAs: [`https://x.com/${METADATA.twitter.handle.replace(/^@/, '')}`] } : {}),
+  },
+];
 ---
 
 <Layout metadata={metadata}>
+  <StructuredData slot="head" schema={structuredData} />
   <!-- Hero Widget ******************* -->
 
   <Hero
-    badge="Free & open source"
+    tagline="Free & open source"
     actions={[
       {
         variant: 'primary',
@@ -49,6 +81,24 @@ const metadata = {
       Suitable for Startups, Small Business, SaaS websites, Professional Portfolios, Marketing websites, Landing Pages & Blogs.
     </Fragment>
   </Hero>
+
+  <!-- SocialProof Widget ************ -->
+
+  <SocialProof
+    id="proof"
+    classes={{ container: '!pb-14 md:!pb-20' }}
+    items={[
+      {
+        value: '#1',
+        label: 'most starred Astro theme',
+        icon: 'tabler:star-filled',
+        color: 'text-amber-400',
+        href: 'https://github.com/arthelokyo/astrowind',
+      },
+      { value: '100', label: 'Lighthouse score', icon: 'tabler:gauge', color: 'text-emerald-500' },
+      { value: 'MIT', label: 'licensed, free to use', icon: 'tabler:license', color: 'text-sky-500' },
+    ]}
+  />
 
   <!-- Note Widget ******************* -->
 
@@ -100,6 +150,44 @@ const metadata = {
       },
     ]}
   />
+
+  <!-- QuickStart Widget ************* -->
+
+  <QuickStart
+    id="quick-start"
+    classes={{ icon: 'bg-green-600 dark:bg-green-700' }}
+    tagline="TL;DR"
+    title="One command. That is the whole setup."
+    subtitle="For the people who scroll past the features and ask “how do I run it?”. This is how."
+    commands={['npm create astro@latest -- --template arthelokyo/astrowind']}
+    items={[
+      {
+        title: 'Two minutes, one terminal',
+        description:
+          'Answer the prompts, run <code>npm run dev</code>, open localhost:4321. The demo site is now yours to edit. The only requirement is a current Node.js.',
+        icon: 'tabler:terminal-2',
+      },
+      {
+        title: 'AI-ready out of the box',
+        description:
+          'An <code>AGENTS.md</code> and step-by-step skills tell Claude Code, Cursor or any coding assistant how this template works. Ask it for a page; it knows where things go.',
+        icon: 'tabler:sparkles',
+      },
+      {
+        title: 'Free, MIT licensed, no strings',
+        description:
+          'Use it for client work, side projects or the company site. Star the repo if it saves you an afternoon.',
+        icon: 'tabler:license',
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div
+        class="absolute inset-0 bg-[radial-gradient(60%_55%_at_15%_20%,rgb(129_140_248/0.28),transparent_65%),radial-gradient(50%_50%_at_85%_25%,rgb(244_114_182/0.22),transparent_65%),radial-gradient(70%_60%_at_50%_100%,rgb(56_189_248/0.24),transparent_65%)] dark:bg-[radial-gradient(60%_55%_at_15%_20%,rgb(99_102_241/0.25),transparent_65%),radial-gradient(50%_50%_at_85%_25%,rgb(217_70_239/0.18),transparent_65%),radial-gradient(70%_60%_at_50%_100%,rgb(14_165_233/0.2),transparent_65%)]"
+      >
+      </div>
+    </Fragment>
+  </QuickStart>
 
   <!-- Content Widget **************** -->
 
@@ -314,8 +402,14 @@ const metadata = {
 
   <!-- HighlightedPosts Widget ******* -->
 
-  <BlogLatestPosts
+  <BlogHighlightedPosts
     title="Find out more content in our Blog"
+    postIds={[
+      'get-started-website-with-astro-tailwind-css',
+      'how-to-customize-astrowind-to-your-brand',
+      'useful-resources-to-create-websites',
+      'landing',
+    ]}
     information={`The blog is used to display AstroWind documentation.
                         Each new article will be an important step that you will need to know to be an expert in creating a website using Astro v7 + Tailwind CSS v4.
                         Astro is a very interesting technology. Thanks.
@@ -339,7 +433,7 @@ const metadata = {
       {
         title: 'What do I need to start?',
         description:
-          'Node.js 22.22 or newer and a terminal. Run <code>npm create astro@latest -- --template arthelokyo/astrowind</code>, then <code>npm run dev</code>. Site name, URL, metadata and blog options live in <code>src/config.yaml</code>; colours and fonts in <code>src/components/CustomStyles.astro</code>.',
+          'A current Node.js (the exact minimum is in <code>package.json</code>) and a terminal. Run <code>npm create astro@latest -- --template arthelokyo/astrowind</code>, then <code>npm run dev</code>. Site name, URL, metadata and blog options live in <code>src/config.yaml</code>; colours and fonts in <code>src/components/CustomStyles.astro</code>.',
       },
       {
         title: 'Can I use it for a site without a blog?',
@@ -372,7 +466,7 @@ const metadata = {
     stats={[
       { title: 'GitHub stars', amount: '5.9K' },
       { title: 'Forks', amount: '1.6K' },
-      { title: 'Ready-made widgets', amount: '22' },
+      { title: 'Ready-made widgets', amount: '34' },
       { title: 'Lighthouse score', amount: '100' },
     ]}
   />

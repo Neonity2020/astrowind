@@ -2,47 +2,34 @@
 
 Out of the box the template emits `BlogPosting` and `BreadcrumbList` on every blog post (`src/pages/[...blog]/index.astro`, `src/components/common/Breadcrumbs.astro`) and `FAQPage` from the `FAQs` widget when it receives `schema`. `src/components/common/Metadata.astro` handles title, description, canonical, robots, Open Graph (including `article:*`) and Twitter through `astro-seo`. Anything else (Organization, Product, HowTo…) is added as described below.
 
+## What the home page ships
+
+`src/pages/index.astro` emits `WebSite` and `Organization` JSON-LD through the layout's `head` slot, built only from `src/config.yaml` (`site.name`, `site.site`, the X handle in `metadata.twitter`), so nothing there needs replacing. Extend the `structuredData` array in that file to add a description, a logo of your own, more `sameAs` profiles or contact data.
+
 ## Site-wide (Organization / WebSite)
 
-In `src/layouts/Layout.astro`, inside `<head>`:
-
-```astro
----
-import { SITE } from 'astrowind:config';
-
-const schema = {
-  '@context': 'https://schema.org',
-  '@type': 'WebSite',
-  name: SITE.name,
-  url: SITE.site,
-};
----
-
-<script type="application/ld+json" set:html={JSON.stringify(schema)} />
-```
+The home page already emits `WebSite` (with an `Organization` publisher) from `site.name` and `site.site`. To add an `Organization` with logo, social profiles or contact data, extend the `structuredData` array in `src/pages/index.astro`; to emit something on every page, render `StructuredData` inside `src/layouts/Layout.astro` next to the `head` slot.
 
 ## Per page
 
-Create `src/components/common/StructuredData.astro`:
+`src/components/common/StructuredData.astro` takes a `schema` object (or an array of them) and prints it as JSON-LD. Pass it through the `head` slot that `Layout.astro` and `PageLayout.astro` expose:
 
 ```astro
 ---
-export interface Props {
-  schema: Record<string, unknown> | Array<Record<string, unknown>>;
-}
-const { schema } = Astro.props;
+import Layout from '~/layouts/PageLayout.astro';
+import StructuredData from '~/components/common/StructuredData.astro';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Acme',
+  url: 'https://acme.example',
+  logo: 'https://acme.example/logo.png',
+};
 ---
 
-<script type="application/ld+json" set:html={JSON.stringify(schema)} />
-```
-
-Pages can put it in the head through the `head` slot that `Layout.astro` and `PageLayout.astro` expose:
-
-```astro
 <Layout metadata={metadata}>
-  <Fragment slot="head">
-    <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
-  </Fragment>
+  <StructuredData slot="head" schema={schema} />
   …
 </Layout>
 ```

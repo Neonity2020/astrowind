@@ -120,3 +120,4 @@ After changes, always verify:
 1. `npm run build` succeeds
 2. `npm run check` passes (astro check + ESLint + Prettier)
 3. Visual check in browser: homepage, blog, dark mode, mobile menu
+4. Structured data describes the site it is on: the `WebSite` / `Organization` block in `src/pages/index.astro` is built only from `config.yaml`; anything you add there must be true for your site
