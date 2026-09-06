@@ -19,6 +19,7 @@ import { truncateAtWord } from '~/utils/utils';
 import type { MetaData } from '~/types';
 import RelatedPosts from '~/components/blog/RelatedPosts.astro';
 import Breadcrumbs from '~/components/common/Breadcrumbs.astro';
+import StructuredData from '~/components/common/StructuredData.astro';
 import { SITE } from 'astrowind:config';
 
 export const prerender = true;
@@ -89,11 +90,9 @@ const breadcrumbs = [
 ---
 
 <Layout metadata={metadata}>
-  <Fragment slot="head">
-    <script is:inline type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
-  </Fragment>
+  <StructuredData slot="head" schema={articleSchema} />
+  <Breadcrumbs bar hideCurrent items={breadcrumbs} />
   <SinglePost post={{ ...post, image: image }} url={url}>
-    <Breadcrumbs slot="breadcrumbs" items={breadcrumbs} />
     {post.Content && <post.Content />}
   </SinglePost>
   <ToBlogLink />
