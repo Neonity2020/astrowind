@@ -32,8 +32,8 @@ const metadata = {
       {
         title: 'basic',
         subtitle: 'Optimal choice for personal use',
-        price: 29,
-        period: 'per month',
+        price: { monthly: 29, yearly: 290 },
+        period: { monthly: 'per month', yearly: 'per year' },
         items: [
           {
             description: 'Etiam in libero, et volutpat',
@@ -56,8 +56,10 @@ const metadata = {
       {
         title: 'standard',
         subtitle: 'Optimal choice for small teams',
-        price: 69,
-        period: 'Per Month',
+        price: { monthly: 69, yearly: 690 },
+        period: { monthly: 'per month', yearly: 'per year' },
+        note: 'Two months free on the yearly plan',
+        highlight: true,
         items: [
           {
             description: 'Proin vel laoreet',
@@ -85,8 +87,8 @@ const metadata = {
       {
         title: 'premium',
         subtitle: 'Optimal choice for companies',
-        price: 199,
-        period: 'Per Month',
+        price: { monthly: 199, yearly: 1990 },
+        period: { monthly: 'per month', yearly: 'per year' },
         items: [
           {
             description: 'Curabitur suscipit risus',

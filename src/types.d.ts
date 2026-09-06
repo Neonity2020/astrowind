@@ -111,18 +111,27 @@ export interface Item {
   classes?: Record<string, string>;
   callToAction?: CallToAction;
   image?: Image;
+  /** Makes the whole item a link (used by Features2 cards). */
+  href?: string;
 }
+
+export type PriceAmount = number | string | { monthly: number | string; yearly: number | string };
 
 export interface Price {
   title?: string;
   subtitle?: string;
   description?: string;
-  price?: number | string;
-  period?: string;
+  /** A single amount, or `{ monthly, yearly }` to enable the billing toggle. */
+  price?: PriceAmount;
+  period?: string | { monthly: string; yearly: string };
+  /** Small line under the price, e.g. "2 months free". */
+  note?: string;
   items?: Array<Item>;
   callToAction?: CallToAction;
   hasRibbon?: boolean;
   ribbonTitle?: string;
+  /** Primary border around the recommended plan. */
+  highlight?: boolean;
 }
 
 export interface Testimonial {
@@ -175,6 +184,8 @@ export interface Form {
 
 // WIDGETS
 export interface Hero extends Omit<Headline, 'classes'>, Omit<Widget, 'isDark' | 'classes'> {
+  /** Small pill above the tagline, e.g. "New" or "Beta". */
+  badge?: string;
   content?: string;
   actions?: string | CallToAction[];
   image?: string | unknown;
@@ -182,10 +193,14 @@ export interface Hero extends Omit<Headline, 'classes'>, Omit<Widget, 'isDark' |
 
 export interface Stats extends Omit<Headline, 'classes'>, Widget {
   stats?: Array<Stat>;
+  /** Animate numeric amounts from 0 when they scroll into view (off with reduced motion). */
+  countUp?: boolean;
 }
 
 export interface Pricing extends Omit<Headline, 'classes'>, Widget {
   prices?: Array<Price>;
+  currency?: string;
+  billingLabels?: { monthly: string; yearly: string };
 }
 
 export interface Testimonials extends Omit<Headline, 'classes'>, Widget {
